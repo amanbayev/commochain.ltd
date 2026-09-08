@@ -1,0 +1,25 @@
+{
+  "name": "commoditychain-v3",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "22.x" },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs"
+  },
+  "dependencies": {
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.0",
+    "@types/react": "19.2.15",
+    "@types/react-dom": "19.2.3",
+    "esbuild": "^0.25.0",
+    "typescript": "5.9.3",
+    "vite": "7.3.6"
+  }
+}

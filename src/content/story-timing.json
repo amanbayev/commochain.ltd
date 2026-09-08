@@ -1,0 +1,234 @@
+{
+  "version": 3,
+  "fps": 24,
+  "frames": 1201,
+  "duration_seconds": 50.041666666666664,
+  "width": 1912,
+  "height": 1080,
+  "audio": false,
+  "file_bytes": 36090173,
+  "encoding": {
+    "codec": "H.264",
+    "crf": 24,
+    "keyframe_interval_frames": 8,
+    "b_frames": 0,
+    "faststart": true
+  },
+  "clips": [
+    {
+      "clip": "vid1.mp4",
+      "attachment_index": 8,
+      "source_id": "e8dc0336-5565-4183-86dc-5e0a9bad9df6",
+      "source_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_2zHVB4Vv28H40gUl9kBTjdYHdPT/e8dc0336-5565-4183-86dc-5e0a9bad9df6.mp4",
+      "sha256": "a3195fa4cf680109d90981bb80d51c1d1b2d81c79e1d72c5cbd06dec23997c90",
+      "narrative": "Living field to raised parcel",
+      "source_duration_seconds": 5.042,
+      "trim_start_frames": 0,
+      "output_start_frame": 0,
+      "output_end_frame_exclusive": 121,
+      "start_seconds": 0.0,
+      "end_seconds": 5.041666666666667
+    },
+    {
+      "clip": "vid2.mp4",
+      "attachment_index": 4,
+      "source_id": "fefc3a43-71f3-49b9-aaa7-e09d39d50f78",
+      "source_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_2zHVB4Vv28H40gUl9kBTjdYHdPT/fefc3a43-71f3-49b9-aaa7-e09d39d50f78.mp4",
+      "sha256": "1ee2b8bdf474d8d1943f0d43b9cb42114c470f12913d04f8958de69e7c084839",
+      "narrative": "Parcel to contract",
+      "source_duration_seconds": 5.042,
+      "trim_start_frames": 1,
+      "output_start_frame": 121,
+      "output_end_frame_exclusive": 241,
+      "start_seconds": 5.041666666666667,
+      "end_seconds": 10.041666666666666
+    },
+    {
+      "clip": "vid3.mp4",
+      "attachment_index": 2,
+      "source_id": "6a5b9a42-6d9e-4327-9e92-68b1670a37be",
+      "source_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_2zHVB4Vv28H40gUl9kBTjdYHdPT/6a5b9a42-6d9e-4327-9e92-68b1670a37be.mp4",
+      "sha256": "eb3a3e6d5b5ab2049090f696b10c7e67b86653fdb39ce96de918a05a58851ce1",
+      "narrative": "Contract to investor and phone",
+      "source_duration_seconds": 5.042,
+      "trim_start_frames": 1,
+      "output_start_frame": 241,
+      "output_end_frame_exclusive": 361,
+      "start_seconds": 10.041666666666666,
+      "end_seconds": 15.041666666666666
+    },
+    {
+      "clip": "vid4.mp4",
+      "attachment_index": 3,
+      "source_id": "b387cee9-24a2-4c0b-9861-944f123de951",
+      "source_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_2zHVB4Vv28H40gUl9kBTjdYHdPT/b387cee9-24a2-4c0b-9861-944f123de951.mp4",
+      "sha256": "4fd1616b1e53621ec7002b0e8395d184ffdecc190fb8e83ce58972c6464b62e0",
+      "narrative": "Phone to market",
+      "source_duration_seconds": 5.042,
+      "trim_start_frames": 1,
+      "output_start_frame": 361,
+      "output_end_frame_exclusive": 481,
+      "start_seconds": 15.041666666666666,
+      "end_seconds": 20.041666666666668
+    },
+    {
+      "clip": "vid5.mp4",
+      "attachment_index": 6,
+      "source_id": "c6488143-2386-47c6-973f-bc96ec21489a",
+      "source_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_2zHVB4Vv28H40gUl9kBTjdYHdPT/c6488143-2386-47c6-973f-bc96ec21489a.mp4",
+      "sha256": "4490141249695fab80088e418d4cc82c8a4b3786f109bf06cef2e8fcb1c492ed",
+      "narrative": "Market to rights, compliance and transaction records",
+      "source_duration_seconds": 5.042,
+      "trim_start_frames": 1,
+      "output_start_frame": 481,
+      "output_end_frame_exclusive": 601,
+      "start_seconds": 20.041666666666668,
+      "end_seconds": 25.041666666666668
+    },
+    {
+      "clip": "vid6.mp4",
+      "attachment_index": 1,
+      "source_id": "a8e036bf-9304-4bda-9a7d-5f7d615925a1",
+      "source_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_2zHVB4Vv28H40gUl9kBTjdYHdPT/a8e036bf-9304-4bda-9a7d-5f7d615925a1.mp4",
+      "sha256": "d2e9910abba6be89409e7d6e14fffd8a422ca506b9a2afa619915947c532522e",
+      "narrative": "Infrastructure to asset gallery",
+      "source_duration_seconds": 5.042,
+      "trim_start_frames": 1,
+      "output_start_frame": 601,
+      "output_end_frame_exclusive": 721,
+      "start_seconds": 25.041666666666668,
+      "end_seconds": 30.041666666666668
+    },
+    {
+      "clip": "vid7.mp4",
+      "attachment_index": 5,
+      "source_id": "881a3ed0-561d-420c-9485-6f53ca140b90",
+      "source_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_2zHVB4Vv28H40gUl9kBTjdYHdPT/881a3ed0-561d-420c-9485-6f53ca140b90.mp4",
+      "sha256": "cf22611202a50b54add609013e6ba24b8e18b70586eeecfe6aec96e0ec417cb0",
+      "narrative": "Gallery to music rights",
+      "source_duration_seconds": 5.042,
+      "trim_start_frames": 1,
+      "output_start_frame": 721,
+      "output_end_frame_exclusive": 841,
+      "start_seconds": 30.041666666666668,
+      "end_seconds": 35.041666666666664
+    },
+    {
+      "clip": "vid8.mp4",
+      "attachment_index": 9,
+      "source_id": "5549685e-1096-459d-9526-99517acf0436",
+      "source_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_2zHVB4Vv28H40gUl9kBTjdYHdPT/5549685e-1096-459d-9526-99517acf0436.mp4",
+      "sha256": "0a08c5184ab6eca05bf182f8eae6331e9ed931a242461e402efb4e98c3a8ec38",
+      "narrative": "Music rights to game assets",
+      "source_duration_seconds": 5.042,
+      "trim_start_frames": 1,
+      "output_start_frame": 841,
+      "output_end_frame_exclusive": 961,
+      "start_seconds": 35.041666666666664,
+      "end_seconds": 40.041666666666664
+    },
+    {
+      "clip": "vid9.mp4",
+      "attachment_index": 7,
+      "source_id": "03ab3235-d6bd-4efb-898e-8ac69c0ec625",
+      "source_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_2zHVB4Vv28H40gUl9kBTjdYHdPT/03ab3235-d6bd-4efb-898e-8ac69c0ec625.mp4",
+      "sha256": "c34d5df89aa7fa3fcd932031375d7be66798c0b8836a943a234bb7a93252a99a",
+      "narrative": "Game assets to grain instrument",
+      "source_duration_seconds": 5.042,
+      "trim_start_frames": 1,
+      "output_start_frame": 961,
+      "output_end_frame_exclusive": 1081,
+      "start_seconds": 40.041666666666664,
+      "end_seconds": 45.041666666666664
+    },
+    {
+      "clip": "vid10.mp4",
+      "attachment_index": 10,
+      "source_id": "1fb939a1-9145-4700-bb1d-b06e7cc7c4a0",
+      "source_url": "https://d2ol7oe51mr4n9.cloudfront.net/user_2zHVB4Vv28H40gUl9kBTjdYHdPT/1fb939a1-9145-4700-bb1d-b06e7cc7c4a0.mp4",
+      "sha256": "13899cd2b62445f1c10576ffc83192c9e7106ed5991cae1100d3c1af4f9c4964",
+      "narrative": "Grain instrument to water-well project",
+      "source_duration_seconds": 5.042,
+      "trim_start_frames": 1,
+      "output_start_frame": 1081,
+      "output_end_frame_exclusive": 1201,
+      "start_seconds": 45.041666666666664,
+      "end_seconds": 50.041666666666664
+    }
+  ],
+  "captions": [
+    {
+      "key": "field",
+      "start": 0,
+      "end": 5.041666666666667,
+      "concept": false
+    },
+    {
+      "key": "rights",
+      "start": 5.041666666666667,
+      "end": 10.541666666666666,
+      "concept": false
+    },
+    {
+      "key": "investor",
+      "start": 10.541666666666666,
+      "end": 15.041666666666666,
+      "concept": false
+    },
+    {
+      "key": "market",
+      "start": 15.041666666666666,
+      "end": 20.041666666666668,
+      "concept": false
+    },
+    {
+      "key": "compliance",
+      "start": 20.041666666666668,
+      "end": 22.916666666666668,
+      "concept": true
+    },
+    {
+      "key": "solana",
+      "start": 22.916666666666668,
+      "end": 25.541666666666668,
+      "concept": true
+    },
+    {
+      "key": "asset_universe",
+      "start": 25.541666666666668,
+      "end": 30.541666666666668,
+      "concept": true
+    },
+    {
+      "key": "music",
+      "start": 30.541666666666668,
+      "end": 35.541666666666664,
+      "concept": true
+    },
+    {
+      "key": "game",
+      "start": 35.541666666666664,
+      "end": 40.541666666666664,
+      "concept": true
+    },
+    {
+      "key": "grain",
+      "start": 40.541666666666664,
+      "end": 45.541666666666664,
+      "concept": true
+    },
+    {
+      "key": "water",
+      "start": 45.541666666666664,
+      "end": 50.041666666666664,
+      "concept": true
+    }
+  ],
+  "edit_notes": [
+    "Sources preserved unchanged outside public assets.",
+    "Numeric story order resolved from first/middle/last frames, not attachment order.",
+    "One initial handoff frame trimmed from vid2 through vid10; no other trims, crossfades, interpolation, added text or audio.",
+    "Full source framing preserved; differing dimensions fitted without stretching and padded as needed.",
+    "Source-generated labels and small source-level motion/exposure differences remain unchanged."
+  ]
+}

@@ -1,0 +1,363 @@
+{
+  "schemaVersion": 1,
+  "_editorial": {
+    "status": "draft_for_unpublished_preview",
+    "notVerifiedOperatingClaims": true,
+    "notLegalAdvice": true,
+    "publishAllowed": false,
+    "notes": [
+      "Only locales and shared display values are visitor-facing. Do not render _editorial.",
+      "Use these translations as supplied draft copy; adapt into the existing locale system rather than replacing its architecture.",
+      "Preserve existing approved company/register wording. Do not derive licence status from this copy.",
+      "Regulated permissions, implemented checks, Solana cluster and deployment scope require confirmation before publication.",
+      "The Solana scene is a requested technology narrative, not verification of a production deployment.",
+      "Asset availability is unconfirmed: keep showcase categories labelled as concepts until their actual status is approved.",
+      "Email address is supplied by the owner. Mailbox existence and delivery have not been tested.",
+      "Kazakh, Russian and English editorial copy needs human review before publication. No fonts are supplied in this package."
+    ],
+    "reviewRequired": [
+      "licence_scope_and_status",
+      "implemented_compliance_controls",
+      "solana_network_and_deployment",
+      "instrument_rights",
+      "asset_availability",
+      "translations",
+      "mailbox_delivery"
+    ],
+    "conditionalSceneKeys": [
+      "compliance",
+      "solana",
+      "music",
+      "game",
+      "grain",
+      "water"
+    ]
+  },
+  "shared": {
+    "brand": "CommodityChain",
+    "domain": "commochain.ltd",
+    "legalName": "Commodity Chain Ltd.",
+    "bin": "250540900471",
+    "email": "info@commochain.ltd",
+    "emailHref": "mailto:info@commochain.ltd",
+    "registerUrl": "https://publicreg.myafsa.com/details/250540900471/",
+    "licenceRecordUrl": "https://publicreg.myafsa.com/licence_details/AFSA-A-LA-2026-0014/",
+    "localeOrder": [
+      "kk",
+      "ru",
+      "en"
+    ],
+    "fontSpecimen": "Ә ә Ғ ғ Қ қ Ң ң Ө ө Ұ ұ Ү ү Һ һ І і"
+  },
+  "locales": {
+    "kk": {
+      "languageName": "Қазақша",
+      "htmlLang": "kk",
+      "metadata": {
+        "title": "CommodityChain | Егістіктен — қаржыландыруға",
+        "description": "Шикізат активтерін токенизациялау, нарық инфрақұрылымы және ықтимал даму бағыттары туралы көрнекі оқиға."
+      },
+      "navigation": {
+        "story": "Оқиға",
+        "infrastructure": "Инфрақұрылым",
+        "assets": "Активтер",
+        "contact": "Байланыс"
+      },
+      "ui": {
+        "language": "Тіл",
+        "menu": "Мәзір",
+        "closeMenu": "Мәзірді жабу",
+        "scroll": "Жалғастыру үшін төмен айналдырыңыз",
+        "scrollExplanation": "Төмен айналдыру оқиғаны жалғастырады. Жоғары айналдыру алдыңғы сәтке қайтарады.",
+        "skipStory": "Байланыс бөліміне өту",
+        "staticView": "Қимылсыз нұсқа",
+        "cinematicView": "Қимылды нұсқа",
+        "loading": "Оқиға жүктелуде…",
+        "mediaError": "Фильм жүктелмеді. Оқиғаның мәтіні төменде берілген.",
+        "readStory": "Оқиғаны оқу",
+        "previous": "Алдыңғы бөлім",
+        "next": "Келесі бөлім",
+        "backToTop": "Басына оралу",
+        "emailCta": "Серіктестікті талқылау",
+        "emailLinkLabel": "CommodityChain компаниясына хат жазу",
+        "copyEmail": "Пошта мекенжайын көшіру",
+        "emailCopied": "Мекенжай көшірілді",
+        "copyFailed": "Пошта мекенжайын белгілеп, көшіріңіз.",
+        "concept": "Тұжырымдама",
+        "externalLink": "Жаңа қойындыда ашылады",
+        "chapter": "Бөлім"
+      },
+      "scenes": {
+        "field": {
+          "headline": "Егістіктен — қаржыландыруға.",
+          "body": "Нақты шикізат активінің цифрлық құралға айналып, нарыққа шығу жолын көріңіз."
+        },
+        "rights": {
+          "headline": "Нақты активтер. Айқын құқықтар.",
+          "body": "Цифрлық бейне — құралдың бір бөлігі ғана. Құқықтар мен міндеттемелер оның құжаттарында айқындалады."
+        },
+        "investor": {
+          "headline": "Нақты экономикамен байланыс.",
+          "body": "Шешім қабылдамас бұрын активті, құралдың шарттарын және қатысу талаптарын зерделеңіз."
+        },
+        "market": {
+          "headline": "Құралдан — нарыққа.",
+          "body": "Шығару, өтінім беру, мәміле жасау және есеп айырысу — бөлек кезеңдер. Бұл оқиға олардың байланысын көрсетеді."
+        },
+        "compliance": {
+          "headline": "Ережелер. Тексеру. Жауапкершілік.",
+          "body": "Реттелетін ортада рұқсат етілген қызмет ауқымы, қатысушыларды тексеру және талаптардың сақталуын бақылау маңызды."
+        },
+        "solana": {
+          "headline": "Solana. Әр әрекеттің ізі.",
+          "body": "Құрал мен транзакция жазбаларының байланысын көріңіз. Актив туралы деректер мен құқықтарды айқындайтын құжаттар бөлек көрсетіледі."
+        },
+        "asset_universe": {
+          "headline": "Оқиға астықтан басталады. Онымен шектелмейді.",
+          "body": "Шикізат активтерін, шығармашылық туындыларға құқықтарды және цифрлық нысандарды токенизациялау тұжырымдамалары."
+        },
+        "music": {
+          "headline": "Музыкалық құқықтар.",
+          "body": "Нақты музыкалық құқықтарды немесе роялти алу құқықтарын цифрлық түрде көрсету тұжырымдамасы."
+        },
+        "game": {
+          "headline": "Цифрлық ойын активтері.",
+          "body": "Ойын экожүйесіндегі цифрлық нысандар мен оларға байланысты құқықтар тұжырымдамасы."
+        },
+        "grain": {
+          "headline": "Астыққа байланысты құралдар.",
+          "body": "Сақтаудағы астық пен болашақ өнім — әртүрлі құрылымдар. Актив пен шарттар нақты құралдың құжаттарында айқындалады."
+        },
+        "water": {
+          "headline": "Су ұңғымалары жобалары.",
+          "body": "Жерасты суларына меншік құқығын емес, нақты жобаға байланысты шарттық құқықтарды көрсету тұжырымдамасы."
+        },
+        "closing": {
+          "headline": "Капиталды құн жасайтын іске бағыттау.",
+          "body": "Жобаңыздың активтерін, құқықтарын және инфрақұрылымын талқылайық."
+        }
+      },
+      "contact": {
+        "title": "Жобаңызды талқылайық.",
+        "body": "Серіктестік және активтерді токенизациялау мәселелері бойынша бізге жазыңыз.",
+        "subject": "CommodityChain — серіктестік туралы сұрау"
+      },
+      "footer": {
+        "company": "Компания туралы",
+        "bin": "БСН",
+        "register": "AFSA ашық тізілімі",
+        "licence": "Лицензия туралы жазба",
+        "illustration": "Фильм — тұжырымдамалық көрініс, жұмыс істеп тұрған сауда интерфейсі емес.",
+        "eligibility": "Қатысу инвесторға қойылатын талаптарға, юрисдикцияға және нақты құралдың шарттарына байланысты.",
+        "concepts": "Көрсетілген бағыттар қазіргі уақытта қолжетімді өнімдердің тізімі емес.",
+        "terrainNote": "Егістік бейнесі шикізат активінің шығу тегін көрсетеді, жерге меншік құқығын білдірмейді."
+      }
+    },
+    "ru": {
+      "languageName": "Русский",
+      "htmlLang": "ru",
+      "metadata": {
+        "title": "CommodityChain | От поля — к финансированию",
+        "description": "История токенизации сырьевых активов, рыночной инфраструктуры и возможных направлений развития."
+      },
+      "navigation": {
+        "story": "История",
+        "infrastructure": "Инфраструктура",
+        "assets": "Активы",
+        "contact": "Контакты"
+      },
+      "ui": {
+        "language": "Язык",
+        "menu": "Меню",
+        "closeMenu": "Закрыть меню",
+        "scroll": "Прокрутите, чтобы продолжить",
+        "scrollExplanation": "Прокрутка вниз продолжает историю. Вверх — возвращает назад.",
+        "skipStory": "Перейти к контактам",
+        "staticView": "Без анимации",
+        "cinematicView": "С анимацией",
+        "loading": "Загружаем историю…",
+        "mediaError": "Не удалось загрузить фильм. История доступна ниже в текстовом виде.",
+        "readStory": "Читать историю",
+        "previous": "Предыдущая глава",
+        "next": "Следующая глава",
+        "backToTop": "В начало",
+        "emailCta": "Обсудить партнёрство",
+        "emailLinkLabel": "Написать в CommodityChain",
+        "copyEmail": "Скопировать почту",
+        "emailCopied": "Адрес скопирован",
+        "copyFailed": "Выделите и скопируйте адрес почты.",
+        "concept": "Концепция",
+        "externalLink": "Откроется в новой вкладке",
+        "chapter": "Глава"
+      },
+      "scenes": {
+        "field": {
+          "headline": "От поля — к финансированию.",
+          "body": "Проследите путь от реального сырьевого актива к цифровому инструменту и рынку, который формируется вокруг него."
+        },
+        "rights": {
+          "headline": "Реальные активы. Определённые права.",
+          "body": "Цифровое представление — только часть инструмента. Права и обязательства определяются его документами."
+        },
+        "investor": {
+          "headline": "Связь с реальной экономикой.",
+          "body": "Изучите актив, условия инструмента и требования к участникам — до принятия инвестиционного решения."
+        },
+        "market": {
+          "headline": "От инструмента — к рынку.",
+          "body": "Выпуск, заявки, заключение сделок и расчёты — разные этапы. История показывает, как они связаны."
+        },
+        "compliance": {
+          "headline": "Правила. Проверки. Ответственность.",
+          "body": "Регулируемая среда — это определённые полномочия, проверки участников и контроль соблюдения требований."
+        },
+        "solana": {
+          "headline": "Solana. За действием — запись.",
+          "body": "Проследите связь между инструментом и записями транзакций. Документы об активе и договорные права показаны отдельно."
+        },
+        "asset_universe": {
+          "headline": "История начинается с зерна. И продолжается.",
+          "body": "Возможные направления токенизации: сырьевые активы, права на творческие произведения и цифровые объекты."
+        },
+        "music": {
+          "headline": "Музыкальные права.",
+          "body": "Концепция цифрового представления конкретных музыкальных прав или прав на роялти."
+        },
+        "game": {
+          "headline": "Цифровые игровые активы.",
+          "body": "Концепция цифровых объектов и связанных с ними прав в игровой экосистеме."
+        },
+        "grain": {
+          "headline": "Зерновые инструменты.",
+          "body": "Зерно на хранении и будущий урожай — разные структуры. Актив и условия определяются документами конкретного инструмента."
+        },
+        "water": {
+          "headline": "Проекты водяных скважин.",
+          "body": "Концепция договорных прав, связанных с конкретным проектом, а не заявление о праве собственности на подземные воды."
+        },
+        "closing": {
+          "headline": "Капитал — туда, где создаётся ценность.",
+          "body": "Обсудим активы, права и инфраструктуру вашего проекта."
+        }
+      },
+      "contact": {
+        "title": "Обсудим ваш проект.",
+        "body": "По вопросам партнёрства и токенизации активов напишите нам.",
+        "subject": "CommodityChain — запрос о партнёрстве"
+      },
+      "footer": {
+        "company": "О компании",
+        "bin": "БИН",
+        "register": "Публичный реестр AFSA",
+        "licence": "Запись о лицензии",
+        "illustration": "Фильм — концептуальная иллюстрация, а не действующий торговый интерфейс.",
+        "eligibility": "Участие зависит от требований к инвестору, юрисдикции и условий конкретного инструмента.",
+        "concepts": "Представленные направления не являются перечнем доступных сейчас продуктов.",
+        "terrainNote": "Изображение участка показывает происхождение сырьевого актива, а не право собственности на землю."
+      }
+    },
+    "en": {
+      "languageName": "English",
+      "htmlLang": "en",
+      "metadata": {
+        "title": "CommodityChain | From the field to finance",
+        "description": "Explore a visual journey through commodity tokenization, market infrastructure and a wider world of asset concepts."
+      },
+      "navigation": {
+        "story": "Story",
+        "infrastructure": "Infrastructure",
+        "assets": "Assets",
+        "contact": "Contact"
+      },
+      "ui": {
+        "language": "Language",
+        "menu": "Menu",
+        "closeMenu": "Close menu",
+        "scroll": "Scroll to explore",
+        "scrollExplanation": "Scroll down to advance. Scroll up to retrace.",
+        "skipStory": "Skip to contact",
+        "staticView": "Static view",
+        "cinematicView": "Cinematic view",
+        "loading": "Loading the story…",
+        "mediaError": "The film could not load. Read the story below.",
+        "readStory": "Read the story",
+        "previous": "Previous chapter",
+        "next": "Next chapter",
+        "backToTop": "Back to top",
+        "emailCta": "Discuss a partnership",
+        "emailLinkLabel": "Email CommodityChain",
+        "copyEmail": "Copy email",
+        "emailCopied": "Email copied",
+        "copyFailed": "Select and copy the email address.",
+        "concept": "Concept",
+        "externalLink": "Opens in a new tab",
+        "chapter": "Chapter"
+      },
+      "scenes": {
+        "field": {
+          "headline": "From the field to finance.",
+          "body": "Follow the journey from a physical commodity to a digital instrument — and the market around it."
+        },
+        "rights": {
+          "headline": "Real assets. Defined rights.",
+          "body": "The digital representation is only one part of the instrument. Its documents define the rights and obligations."
+        },
+        "investor": {
+          "headline": "A connection to the real economy.",
+          "body": "Explore the asset, review the terms and understand participation requirements before making a decision."
+        },
+        "market": {
+          "headline": "From an instrument to a market.",
+          "body": "Issuance, orders, execution and settlement are distinct stages. The story shows how they connect."
+        },
+        "compliance": {
+          "headline": "Rules. Checks. Accountability.",
+          "body": "A regulated environment depends on defined permissions, participant checks and continuing oversight."
+        },
+        "solana": {
+          "headline": "Solana. A record behind the action.",
+          "body": "Follow the connection between an instrument and its transaction records. Asset evidence and contractual documents remain distinct."
+        },
+        "asset_universe": {
+          "headline": "The story starts with grain. It goes further.",
+          "body": "Explore tokenization concepts across physical commodities, creative rights and digital assets."
+        },
+        "music": {
+          "headline": "Music rights.",
+          "body": "An exploration of how clearly defined music rights or royalty interests could be represented digitally."
+        },
+        "game": {
+          "headline": "Digital game assets.",
+          "body": "An exploration of digital objects and the specific rights associated with them in a game ecosystem."
+        },
+        "grain": {
+          "headline": "Grain instruments.",
+          "body": "Stored grain and a future harvest are different structures. The instrument’s documentation defines the relevant asset and terms."
+        },
+        "water": {
+          "headline": "Water-well projects.",
+          "body": "An exploration of contractual interests linked to a specific project — not a claim to ownership of groundwater."
+        },
+        "closing": {
+          "headline": "Connect capital to what creates value.",
+          "body": "Let’s discuss the assets, rights and infrastructure behind your project."
+        }
+      },
+      "contact": {
+        "title": "Let’s discuss your project.",
+        "body": "For partnership enquiries and discussions about asset tokenization, write to us.",
+        "subject": "CommodityChain — partnership enquiry"
+      },
+      "footer": {
+        "company": "Company information",
+        "bin": "BIN",
+        "register": "View AFSA Public Register",
+        "licence": "Licence record",
+        "illustration": "The film is a conceptual illustration, not a live trading interface.",
+        "eligibility": "Participation is subject to eligibility, jurisdiction and the terms of each instrument.",
+        "concepts": "Asset categories shown for exploration are not a list of currently available products.",
+        "terrainNote": "The field tile illustrates the origin of the commodity, not ownership of the land."
+      }
+    }
+  }
+}
