@@ -3,6 +3,7 @@ import type { Locale } from '../i18n';
 import { overviewCopy } from '../content/overview-copy';
 import { storyCopy, storyShared } from '../story-i18n';
 import { enquiryMailto, formatEnquiry, type Enquiry } from '../lib/enquiry';
+import { LinkArrow } from './brand-details';
 
 export function EnquiryForm({ locale }: { locale: Locale }) {
   const copy = overviewCopy[locale].enquiry;
@@ -55,7 +56,7 @@ export function EnquiryForm({ locale }: { locale: Locale }) {
     {prepared && <div className="enquiry-result">
       <p role="status">{copy.prepared}</p>
       <label htmlFor="enquiry-draft">{copy.draft}</label><textarea id="enquiry-draft" ref={draftRef} value={draft} readOnly rows={6}/>
-      <div className="enquiry-actions"><a className="text-link" href={mailto}>{storyCopy[locale].ui.emailLinkLabel}<span aria-hidden="true"> ↗</span></a><button onClick={copyDraft}>{copy.copy}</button></div>
+      <div className="enquiry-actions"><a className="text-link" href={mailto}>{storyCopy[locale].ui.emailLinkLabel}<LinkArrow/></a><button data-copy-state={copyState} onClick={copyDraft}>{copy.copy}</button></div>
       <p role="status">{copyState === 'copied' ? copy.copied : copyState === 'failed' ? copy.copyFailed : ''}</p>
     </div>}
   </div>;

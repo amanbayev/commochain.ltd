@@ -30,3 +30,9 @@ These are editorial recommendations, not newly asserted company facts. They were
 ## Motion budget
 
 Use only the two existing responsive WebP photos. Their maximum translation is 3% each way with 1.09 image scale, clipped inside a fixed layout box; text remains on the document's reading plane. Native CSS view timelines avoid adding JavaScript listeners or dependencies. Viewports below 768px, reduced-motion preferences and unsupported browsers receive the complete static design. No film-controller, DNS, indexing or deployment-configuration changes are included.
+
+## Follow-up microinteractions
+
+The owner subsequently requested microanimations and production publication. Short transitions now acknowledge audience selection, navigation, button presses, focus, menu opening, supporting-detail opening and preparation of an unsent email draft. A single 710ms sequence of border emphasis (including stagger delays) introduces the engine steps when the diagram first enters view. It is not repeated and does not suggest that the model is processing real transactions. All copy, qualifications and actions remain available immediately; reduced-motion users retain the static presentation and text-based feedback.
+
+The new observer disconnects after first entry and cleans up its listener on unmount. No motion library, continuous JavaScript scroll processing or additional asset is required. The motion refinement does not fill the unverified editorial gaps above with invented company claims. Release approval is not verification of legal wording, translations or physical-iPhone behavior.

@@ -1,11 +1,21 @@
+import { useEffect, useRef } from 'react';
 import type { Locale } from '../i18n';
 import { overviewCopy } from '../content/overview-copy';
 import { experienceCopy } from '../content/experience-copy';
+import { observeDiagramMotion } from '../lib/diagram-motion';
 
 export function EngineDiagram({ locale }: { locale: Locale }) {
+  const diagramRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!diagramRef.current) return;
+    return observeDiagramMotion(diagramRef.current, {
+      preference: window.matchMedia('(prefers-reduced-motion: reduce)'),
+      createObserver: typeof IntersectionObserver === 'undefined' ? undefined : (callback, options) => new IntersectionObserver(callback, options),
+    });
+  }, []);
   const engines = overviewCopy[locale].process.engines;
   const copy = experienceCopy[locale].architecture;
-  return <figure className="engine-diagram" aria-describedby="engine-model-note">
+  return <figure ref={diagramRef} className="engine-diagram" aria-describedby="engine-model-note">
     <figcaption id="engine-model-note" className="diagram-caption"><span className="diagram-dot" aria-hidden="true"/>{copy.note}</figcaption>
     {[{ engine: engines[1], steps: copy.protocols, kind: 'protocols' }, { engine: engines[0], steps: copy.market, kind: 'market' }].map(({ engine, steps, kind }, index) => <div className="engine-lane-group" key={kind}>
       {index === 1 && <div className="engine-connection"><span aria-hidden="true"/>{copy.connection}<span aria-hidden="true"/></div>}

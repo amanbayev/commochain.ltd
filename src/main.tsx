@@ -5,6 +5,7 @@ import { isLocale, type Locale } from './i18n';
 import { storyCopy } from './story-i18n';
 import './story.css';
 import './overview.css';
+import './motion.css';
 
 const candidate = window.location.pathname.split('/').filter(Boolean)[0]?.replace(/\.html$/, '') || '';
 const documentLocale = document.documentElement.lang;
