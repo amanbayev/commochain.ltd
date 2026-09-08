@@ -4,8 +4,8 @@ import { resolve, extname, sep } from 'node:path';
 
 const root = resolve('dist');
 const port = Number(process.env.PORT || 4173);
-const types = { '.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.css':'text/css; charset=utf-8', '.json':'application/json', '.woff2':'font/woff2', '.svg':'image/svg+xml', '.jpg':'image/jpeg', '.png':'image/png', '.txt':'text/plain; charset=utf-8', '.xml':'application/xml' };
-createServer(async (request, response) => {
+const types = { '.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.css':'text/css; charset=utf-8', '.json':'application/json', '.woff2':'font/woff2', '.svg':'image/svg+xml', '.jpg':'image/jpeg', '.png':'image/png', '.webp':'image/webp', '.txt':'text/plain; charset=utf-8', '.xml':'application/xml' };
+const server = createServer(async (request, response) => {
   try {
     const url = new URL(request.url || '/', 'http://localhost');
     const pathname = decodeURIComponent(url.pathname);
@@ -22,4 +22,5 @@ createServer(async (request, response) => {
     response.writeHead(404, { 'Content-Type':'text/html; charset=utf-8' });
     response.end(await readFile(resolve(root,'404.html')).catch(() => 'Not found'));
   }
-}).listen(port, '127.0.0.1', () => console.log(`Local preview: http://127.0.0.1:${port}/en`));
+});
+server.listen(port, '127.0.0.1', () => console.log(`Local preview: http://127.0.0.1:${server.address().port}/en`));

@@ -18,7 +18,8 @@ const ogLocales = { kk: 'kk_KZ', ru: 'ru_RU', en: 'en_US' };
 await viteBuild();
 await mkdir(resolve(root, '.build'), { recursive: true });
 await esbuild({ entryPoints: [resolve(root, 'src/prerender.tsx')], outfile: resolve(root, '.build/prerender.mjs'), bundle: true, platform: 'node', format: 'esm', packages: 'external', jsx: 'automatic', define: { 'process.env.NODE_ENV': '"production"' } });
-const { renderLocale } = await import(pathToFileURL(resolve(root, '.build/prerender.mjs')).href);
+const { renderLocale, renderOverviewDocument } = await import(pathToFileURL(resolve(root, '.build/prerender.mjs')).href);
+await mkdir(resolve(root, 'dist/downloads'), { recursive: true });
 const template = await readFile(resolve(root, 'dist/index.html'), 'utf8');
 if (!template.includes('<!--site-head-->') || !template.includes('<!--app-html-->')) throw new Error('Static HTML template markers were not preserved.');
 
@@ -44,6 +45,7 @@ for (const locale of locales) {
   ].join('\n');
   const html = template.replace('<html lang="kk">', `<html lang="${locale}">`).replace('<!--site-head-->', head).replace('<!--app-html-->', renderLocale(locale));
   await writeFile(resolve(root, `dist/${locale}.html`), html);
+  await writeFile(resolve(root, `dist/downloads/commoditychain-overview-${locale}.html`), renderOverviewDocument(locale, origin));
   if (locale === 'kk') await writeFile(resolve(root, 'dist/index.html'), html);
 }
 await writeFile(resolve(root, 'dist/robots.txt'), indexable ? `User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n` : 'User-agent: *\nDisallow: /\n');

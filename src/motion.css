@@ -1,0 +1,94 @@
+/* State changes carry the motion. All content is visible without this layer. */
+:root {
+  --motion-feedback: 140ms;
+  --motion-change: 240ms;
+  --motion-settle: cubic-bezier(.16, 1, .3, 1);
+}
+
+.enquiry-actions a { display: inline-flex; align-items: center; gap: 12px; }
+.enquiry-actions button[data-copy-state=copied] {
+  background: var(--surface-inlay);
+  border-color: var(--surface-inlay);
+  color: var(--text-forest);
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  .story-main-nav a, .story-languages a, .story-menu a {
+    transition: color var(--motion-feedback), background-color var(--motion-feedback), border-color var(--motion-feedback);
+  }
+  .story-main-nav a::after {
+    content: ''; position: absolute; height: 2px; background: #c9ad69;
+    bottom: 3px; left: 0; right: 0; transform: scaleX(0); transform-origin: left;
+    transition: transform var(--motion-change) var(--motion-settle);
+  }
+  .story-main-nav a[aria-current=location]::after,
+  .story-main-nav a:focus-visible::after { transform: scaleX(1); }
+  .story-header { transition: background-color var(--motion-change), border-color var(--motion-change); }
+  .audience-tabs button {
+    transition: background-color var(--motion-change), color var(--motion-feedback), border-color var(--motion-change);
+  }
+  .audience-tab-indicator {
+    transition: transform var(--motion-change) var(--motion-settle), background-color var(--motion-change), border-color var(--motion-change);
+  }
+  .audience-tabs button[aria-selected=true] .audience-tab-indicator { transform: scale(1.15); }
+  .audience-panel:not([hidden]) { animation: audience-change var(--motion-change) var(--motion-settle); }
+
+  .audience-cta, .enquiry-submit, .enquiry-actions button {
+    transition: transform var(--motion-feedback) var(--motion-settle), background-color var(--motion-feedback), border-color var(--motion-feedback), color var(--motion-feedback);
+  }
+  .audience-cta:active, .enquiry-submit:active:not(:disabled), .enquiry-actions button:active:not(:disabled) {
+    transform: translateY(1px) scale(.99);
+  }
+  .enquiry-panel input, .enquiry-panel textarea {
+    transition: border-color var(--motion-feedback), background-color var(--motion-feedback);
+  }
+  .enquiry-panel input:focus, .enquiry-panel textarea:focus { background-color: #142b20; }
+  .enquiry-result { animation: draft-ready 280ms var(--motion-settle); }
+  .enquiry-actions button[data-copy-state=copied] { animation: copy-confirm 280ms var(--motion-settle); }
+  .story-menu { animation: menu-unfold var(--motion-change) var(--motion-settle); }
+  .supporting-detail summary, .future-protocols summary {
+    transition: color var(--motion-feedback);
+  }
+  .supporting-detail[open]::details-content, .future-protocols[open]::details-content {
+    animation: evidence-open 200ms var(--motion-settle);
+  }
+  .disclosure-mark, .link-arrow { transition-timing-function: var(--motion-settle); }
+
+  /* A single border emphasis connects the steps visually, without hiding text. */
+  .engine-diagram[data-motion-entered=true] .engine-nodes li {
+    animation: instrument-step 440ms var(--motion-settle) var(--step-delay, 0ms);
+  }
+  .engine-nodes li:nth-child(2) { --step-delay: 90ms; }
+  .engine-nodes li:nth-child(3) { --step-delay: 180ms; }
+  .engine-nodes li:nth-child(4) { --step-delay: 270ms; }
+}
+
+@keyframes audience-change {
+  from { opacity: .82; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes evidence-open {
+  from { opacity: .82; }
+  to { opacity: 1; }
+}
+@keyframes menu-unfold {
+  from { opacity: .86; clip-path: inset(0 0 12% 0); transform: translateY(-4px); }
+  to { opacity: 1; clip-path: inset(0); transform: none; }
+}
+@keyframes draft-ready {
+  from { opacity: .86; transform: translateY(5px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes copy-confirm {
+  from { transform: scale(.98); }
+  to { transform: none; }
+}
+@keyframes instrument-step {
+  0%, 100% { border-top-color: #76855d; }
+  35% { border-top-color: #e6ca8b; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audience-panel, .story-menu, .enquiry-result, .engine-nodes li { animation: none; }
+  .supporting-detail[open]::details-content, .future-protocols[open]::details-content { animation: none; }
+}
