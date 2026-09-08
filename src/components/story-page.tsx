@@ -7,11 +7,13 @@ import { createScrollVideo } from '../lib/scroll-video';
 import { chapterSeekTime, storyScrollOffset } from '../lib/story-navigation';
 import { overviewCopy } from '../content/overview-copy';
 import { fieldToFinanceCopy } from '../content/field-to-finance-copy';
-import { BusinessOverview } from './business-overview';
+import { BusinessOverview, DeeperOverview } from './business-overview';
 import { EnquiryForm } from './enquiry-form';
 import { sectionKeys, sectionAtReadingLine, type SectionKey } from '../lib/experience-navigation';
 import { experienceCopy } from '../content/experience-copy';
 import { LinkArrow } from './brand-details';
+import { publicSiteCopy } from '../content/public-site-copy';
+import { trackPublicEvent } from '../lib/public-events';
 
 const duration = timing.duration_seconds;
 const chapters = timing.captions;
@@ -28,6 +30,7 @@ type Props = { initialLocale?: Locale; offline?: boolean; assets?: Record<string
 export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=localMedia, onLocaleChange }:Props) {
   const [locale, setLocale] = useState<Locale>(initialLocale);
   const [mounted, setMounted] = useState(false);
+  const [enquiryRole, setEnquiryRole] = useState('other');
   const [reduced, setReduced] = useState(false);
   const [manualStatic, setManualStatic] = useState<boolean|null>(null);
   const [failed, setFailed] = useState(false);
@@ -52,6 +55,9 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
   const staticMode = failed || (manualStatic ?? reduced);
   const t = storyCopy[locale];
   const overview = overviewCopy[locale];
+  const publicCopy = publicSiteCopy[locale];
+  const navigation = { ...overview.nav, verification: publicCopy.verificationNav };
+  const navKeys = ['assets', 'verification', 'infrastructure', 'company', 'contact'] as const;
   const asset = (path:string) => assets[path] || path;
 
   useEffect(() => {
@@ -83,6 +89,7 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
     window.addEventListener('hashchange', navigate);
     return () => { cancelAnimationFrame(raf); window.removeEventListener('hashchange', navigate); };
   }, [mounted, staticMode, offline]);
+
 
   useEffect(() => {
     if (!menu) return;
@@ -203,17 +210,25 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
   };
   const goToSection=(key:typeof sectionKeys[number],event?:React.MouseEvent<HTMLAnchorElement>) => {
     event?.preventDefault(); setMenu(false); setHash('#'+key);
-    const section=document.getElementById(key);
-    section?.scrollIntoView({behavior:'auto'});
-    section?.querySelector<HTMLElement>('h2')?.focus({preventScroll:true});
+    if (!activeSection) trackPublicEvent('story_skip', locale);
+    requestAnimationFrame(() => {
+      const section=document.getElementById(key);
+      section?.scrollIntoView({behavior:'auto'});
+      section?.querySelector<HTMLElement>('h1,h2')?.focus({preventScroll:true});
+    });
   };
   const goToChapter=(index:number) => { setHash('#chapter-'+chapters[index].key); jumpKey(chapters[index].key as SceneKey); };
-  const contact=(event?:React.MouseEvent<HTMLAnchorElement>) => goToSection('contact',event);
+  const contact=(event?:React.MouseEvent<HTMLAnchorElement>, role?: string) => { if(role) setEnquiryRole(role); goToSection('contact',event); };
+  const openStory=(event:React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault(); setMenu(false); setHash('#story'); jumpKey('field');
+    trackPublicEvent('story_open', locale);
+    requestAnimationFrame(()=>document.querySelector<HTMLElement>(staticMode ? '.static-opening h1' : '.story-caption h1')?.focus({preventScroll:true}));
+  };
   navigateHashRef.current=()=>{
     const hash=window.location.hash.slice(1);
     const index=chapters.findIndex(chapter=>'chapter-'+chapter.key===hash);
     if(index>=0) jumpKey(chapters[index].key as SceneKey);
-    else if(hash==='story') jumpKey('field');
+    else if(hash==='story' || hash==='cinema') jumpKey('field');
     else if(sectionKeys.some(key=>key===hash)) document.getElementById(hash)?.scrollIntoView({behavior:'auto'});
   };
   const language=(event:React.MouseEvent<HTMLAnchorElement>,next:Locale) => {
@@ -239,19 +254,20 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
       else { const track=trackRef.current,stage=stageRef.current; if(track&&stage)window.scrollTo({top:track.getBoundingClientRect().top+window.scrollY+preserved*Math.max(1,track.offsetHeight-stage.offsetHeight),behavior:'auto'}); }
     });
   };
-  const backToStory=(event:React.MouseEvent<HTMLAnchorElement>)=>{event.preventDefault();setHash('#story');jumpKey('field');};
+  const backToStory=openStory;
   const brand=<img className="story-brand" src={asset('/assets/concepts/logo-B-dark.svg')} alt={storyShared.brand} width="245" height="40"/>;
 
-  return <div className="story-shell" data-locale={locale} data-view={staticMode?'static':'cinematic'}>
+  return <div className="story-shell public-site" data-locale={locale} data-view={staticMode?'static':'cinematic'}>
     <a className="story-skip-access" href="#overview" onClick={e=>goToSection('overview',e)}>{overview.readOverview}</a>
     <header className="story-header" data-reading={activeSection ? 'overview' : 'film'}>
-      <a href="#story" className="story-home" onClick={backToStory}>{brand}</a>
-      <nav className="story-main-nav" aria-label={t.navigation.story}>{sectionKeys.map(key=><a key={key} href={'#'+key} aria-current={activeSection === key ? 'location' : undefined} onClick={e=>goToSection(key,e)}>{overview.nav[key]}</a>)}</nav>
+      <a href="#cinema" className="story-home" onClick={backToStory}>{brand}</a>
+      <nav className="story-main-nav" aria-label={overview.readOverview}>{navKeys.map(key=><a key={key} href={'#'+key} aria-current={activeSection === key ? 'location' : undefined} onClick={e=>goToSection(key,e)}>{navigation[key]}</a>)}</nav>
       <nav className="story-languages" aria-label={t.ui.language}>{storyLocaleOrder.map(l=><a key={l} href={offline?`#/${l}/story`:`/${l}`} hrefLang={l} lang={l} aria-current={locale===l?'true':undefined} onClick={e=>language(e,l)}>{storyCopy[l].languageName}</a>)}</nav>
       <button ref={menuButtonRef} className="story-mobile-menu" aria-expanded={menu} aria-controls="story-menu" onClick={()=>setMenu(!menu)}>{menu?t.ui.closeMenu:t.ui.menu}</button>
-      {menu&&<nav id="story-menu" className="story-menu" aria-label={experienceCopy[locale].jump}>{sectionKeys.map(key=><a key={key} href={'#'+key} aria-current={activeSection === key ? 'location' : undefined} onClick={e=>goToSection(key,e)}>{overview.nav[key]}<LinkArrow/></a>)}</nav>}
+      {menu&&<nav id="story-menu" className="story-menu" aria-label={experienceCopy[locale].jump}>{navKeys.map(key=><a key={key} href={'#'+key} aria-current={activeSection === key ? 'location' : undefined} onClick={e=>goToSection(key,e)}>{navigation[key]}<LinkArrow/></a>)}</nav>}
     </header>
     <main>
+      <section id="cinema" className="cinematic-opening" aria-label={publicCopy.story}>
       <div id="story" ref={trackRef} className="story-track" hidden={staticMode}>
         <div className="story-stage" ref={stageRef} data-chapter="field" data-progress="0" data-target-time="0">
           <div className="story-media"><img className={'story-poster '+(ready?'is-covered':'')} src={asset(media.poster)} alt=""/>
@@ -262,7 +278,7 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
             const text=t.scenes[chapter.key as SceneKey];
             return <article key={chapter.key} className={'story-caption caption-'+chapter.key} data-key={chapter.key} ref={node=>{captionRefs.current[index]=node;}} hidden={index!==activeRef.current} aria-hidden={index!==activeRef.current}>
               <div className="story-eyebrow"><span>{storyShared.brand}</span>{chapter.concept&&<span className="concept-marker">{t.ui.concept}</span>}</div>
-              {index===0?<h1>{fieldToFinanceCopy[locale].headline}</h1>:<h2>{text.headline}</h2>}
+              {index===0?<h1 tabIndex={-1}>{fieldToFinanceCopy[locale].headline}</h1>:<h2>{text.headline}</h2>}
               <p>{index===0?overview.hero:text.body}</p>
             </article>;
           })}</div>
@@ -275,13 +291,17 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
         </div>
       </div>
       <section className="story-static" hidden={!staticMode} aria-label={t.ui.readStory}>
-        <div className="static-opening"><img src={asset(media.poster)} alt=""/><div><span>{overview.textView}</span><h1>{fieldToFinanceCopy[locale].headline}</h1><p>{failed?t.ui.mediaError:overview.hero}</p><a href="#overview" onClick={e=>goToSection('overview',e)}>{overview.readOverview}</a>{!failed&&<button onClick={toggleStatic}>{t.ui.cinematicView}</button>}</div></div>
+        <div className="static-opening"><img src={asset(media.poster)} alt=""/><div><span>{overview.textView}</span><h1 tabIndex={-1}>{fieldToFinanceCopy[locale].headline}</h1><p>{failed?t.ui.mediaError:overview.hero}</p><a href="#overview" onClick={e=>goToSection('overview',e)}>{overview.readOverview}</a>{!failed&&<button onClick={toggleStatic}>{t.ui.cinematicView}</button>}</div></div>
         <div className="static-chapters">{chapters.map(c=><article key={c.key} id={'text-'+c.key}>{c.concept&&<span className="concept-marker">{t.ui.concept}</span>}<h2>{t.scenes[c.key as SceneKey].headline}</h2><p>{t.scenes[c.key as SceneKey].body}</p></article>)}</div>
       </section>
-      <noscript><style>{'.story-track,.grain-film-link,.story-mobile-menu,.static-opening button{display:none!important}.story-static{display:block!important}.story-header{position:absolute}'}</style></noscript>
-      <BusinessOverview locale={locale} onContact={contact} onGrain={event=>{event.preventDefault();goToChapter(chapters.findIndex(chapter=>chapter.key==='grain'));}}/>
-      <section id="contact" className="story-contact"><h2 tabIndex={-1}>{t.scenes.closing.headline}</h2><div className="enquiry-layout"><div className="enquiry-intro"><p className="closing-intro">{t.scenes.closing.body}</p><h3>{overview.enquiry.nextTitle}</h3><p>{overview.enquiry.nextBody}</p><a className="public-email" href={storyShared.emailHref} aria-label={t.ui.emailLinkLabel}>{storyShared.email}<span className="css-arrow" aria-hidden="true"/></a></div><EnquiryForm locale={locale}/></div></section>
+      </section>
+      <noscript><style>{'.story-track,.story-mobile-menu,.static-opening button{display:none!important}.story-static{display:block!important}.story-header{position:absolute}'}</style></noscript>
+      <div className="public-reading">
+      <BusinessOverview locale={locale} onContact={contact} onStory={openStory}/>
+      <section id="contact" className="story-contact"><h2 tabIndex={-1}>{publicCopy.primary}</h2><div className="enquiry-layout"><div className="enquiry-intro"><p className="closing-intro">{t.scenes.closing.body}</p><h3>{overview.enquiry.nextTitle}</h3><p>{overview.enquiry.nextBody}</p><a className="public-email" href={storyShared.emailHref} aria-label={t.ui.emailLinkLabel}>{storyShared.email}<span className="css-arrow" aria-hidden="true"/></a></div><EnquiryForm locale={locale} category={enquiryRole}/></div></section>
+      <DeeperOverview locale={locale} onStory={openStory}/>
+      </div>
     </main>
-    <footer className="story-footer"><div className="story-footer-top"><span>{storyShared.domain}</span><a href="#story" onClick={backToStory}>{t.ui.backToTop}</a></div><div className="story-company"><div><span>{t.footer.company}</span><strong lang="en">{storyShared.legalName}</strong><span>{t.footer.bin} {storyShared.bin}</span><a href={storyShared.emailHref}>{storyShared.email}</a></div><nav aria-label={t.footer.company}><a href={storyShared.registerUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t.footer.register}, ${t.ui.externalLink}`}>{t.footer.register}</a><a href={storyShared.licenceRecordUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t.footer.licence}, ${t.ui.externalLink}`}>{t.footer.licence}</a></nav></div><div className="story-qualifications"><p>{t.footer.illustration}</p><p>{t.footer.eligibility}</p><p>{t.footer.concepts}</p><p>{t.footer.terrainNote}</p></div></footer>
+    <footer className="story-footer"><div className="story-footer-top"><span>{storyShared.domain}</span><a href="#cinema" onClick={backToStory}>{t.ui.backToTop}</a></div><div className="story-company"><div><span>{t.footer.company}</span><strong lang="en">{storyShared.legalName}</strong><span>{t.footer.bin} {storyShared.bin}</span><a href={storyShared.emailHref}>{storyShared.email}</a></div><nav aria-label={t.footer.company}><a href={storyShared.registerUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t.footer.register}, ${t.ui.externalLink}`}>{t.footer.register}</a><a href={storyShared.licenceRecordUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t.footer.licence}, ${t.ui.externalLink}`}>{t.footer.licence}</a></nav></div><div className="story-qualifications"><p>{t.footer.illustration}</p><p>{t.footer.eligibility}</p><p>{t.footer.concepts}</p><p>{t.footer.terrainNote}</p></div></footer>
   </div>;
 }

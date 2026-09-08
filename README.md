@@ -1,124 +1,22 @@
-# CommodityChain V3
+# CommodityChain public website
 
-GitHub-ready source for the public static CommodityChain website. This package is configured for **Vercel hosting**, with GitHub storing the repository. It does not require Higgsfield login, a server, a database, wallets or accounts for visitors.
+React 19, TypeScript, Vite 7 and Node.js 22; statically generated Kazakh, Russian and English pages on the existing Vercel project. This is the marketing website, not the separate trading application.
 
-## Upload to GitHub
+## Current review: cinematic opening, verification and finishing details
 
-1. Extract the ZIP on your computer.
-2. Create a GitHub repository. **Private is recommended** for company source; Vercel can import a private repository after you grant it access.
-3. Open **Add file > Upload files**.
-4. Upload the **contents of the extracted folder**, preserving the `src`, `public` and `scripts` directories. `package.json` and `vercel.json` must be at the repository root, not inside an extra enclosing folder.
-5. Commit the upload. Do not upload the ZIP itself as the only repository file.
+At the owner's request, the original eleven-chapter scroll film opens the page again. The readable business overview follows it in normal document flow: licence/stage/strategic shareholder, two agricultural applications, verification, lifecycle, participation, governance, FAQ and enquiry. Visitors can still jump directly to the overview or contact. Architecture, future concepts and the full transcript remain optional deeper reading.
 
-The package contains a pinned npm lockfile. Do not upload `node_modules`, local `.env` files, `.vercel` credentials or build caches.
+One video mounts after hydration in cinematic mode, using the unchanged source, timing and scroll controller. There is no separate story modal or duplicate player. Reduced-motion, failed-media and no-JavaScript paths remain readable. The supplied TechHub logo now has a transparent background, and the lower disclosures/footer regain their shared gutters and content spacing.
 
-## Deploy to Vercel
+The owner clarified that stored-grain verification uses smart sensors and measurement systems: cameras, scales, laboratory testing and robots inside silos for quantity/quality measurements. This information is shared across all three languages and printable overviews, alongside separate warehouse-document and custody evidence. See [this revision's screenshots and checks](docs/film-return-review.md); the earlier optional-film layout is superseded.
 
-1. Sign in to your Vercel account and select the appropriate team. Vercel's policy requires **Pro or Enterprise for commercial use**; no subscription is created by this package.
-2. Choose **Add New > Project**, connect GitHub and import this repository.
-3. Confirm the project root is the folder containing `package.json`.
-4. The included `vercel.json` sets these values:
-   - Framework: Vite
-   - Install command: `npm ci`
-   - Build command: `npm run build`
-   - Output directory: `dist`
-   - Node.js: 22.x
-5. Deploy. Test the production deployment in a signed-out/incognito browser. Ensure production domains are not protected by an authentication/password setting.
-6. Verify `/kk`, `/ru` and `/en`, scroll forward/backward through the film, switch language at a mid-story point, and use the contact links.
+Current facts and qualifications come from the supplied licence certificate and the owner's implementation brief. See [claim sources and unresolved reviews](docs/public-claims.md). The supplied certificate and private supporting documents are not published.
 
-No secret environment variables or API keys are required.
+Online enquiry delivery is **disabled by default**. The owner confirmed that no delivery provider is configured. The form prepares an explicitly unsent email draft. A tested optional Vercel endpoint, provider adapter and durable spam/idempotency guard are included, but no accounts, credentials or DNS changes have been made. See [enquiry configuration](docs/enquiry-setup.md).
 
-## Connect commochain.ltd through Porkbun
+This revision stops at a feature-branch draft PR and preview. Do not merge, promote a preview or deploy production without explicit owner approval.
 
-1. In Vercel Project Settings > Domains, add `commochain.ltd` and `www.commochain.ltd`.
-2. Copy the **exact values shown by that project's domain configuration**. Vercel DNS values can be project-specific; do not reuse an IP or CNAME from an unrelated tutorial.
-3. In Porkbun Domain Management > DNS:
-   - Root domain: add the requested **A** record; leave Host blank; use Vercel's displayed IPv4 address.
-   - `www`: add the requested **CNAME**; Host is `www`; use Vercel's displayed CNAME target.
-   - Add a TXT verification record only if Vercel explicitly requests it.
-4. Replace only conflicting website/parking records. **Preserve Google MX, SPF, DKIM, DMARC, verification records and unrelated/trading-app subdomains.** The previously observed MX was priority 1, `smtp.google.com`.
-5. Keep Porkbun nameservers unless you deliberately migrate the entire DNS zone.
-6. Wait for Vercel's domain verification and HTTPS status to become valid. Choose one primary hostname and redirect the other.
-7. Do not point the new domain at the old sign-in-gated Higgsfield hostname.
-
-## Search indexing and metadata
-
-`site.config.json` contains:
-
-```json
-{
-  "siteUrl": "https://www.commochain.ltd",
-  "allowIndexing": false
-}
-```
-
-Search indexing is **off by default**, preserving the draft/launch-review control. After domain setup and the required factual/legal review, change `allowIndexing` to `true`, confirm `siteUrl`, commit and redeploy.
-
-Optional build environment overrides are `SITE_URL` and `PUBLIC_INDEXABLE=true`. These are public configuration, not secrets.
-
-The build creates localized static HTML for `/kk`, `/ru` and `/en`, plus canonical/hreflang metadata, Open Graph tags, `robots.txt` and `sitemap.xml`. `/` redirects to `/kk`. Language switching does not remount the video or reset the story position.
-
-## Local preview (optional)
-
-Install Node.js 22, open a terminal in this folder, then run:
-
-```sh
-npm ci
-npm run build
-npm run preview
-```
-
-Open `http://127.0.0.1:4173/en`.
-
-For development, use `npm run dev`. Source HTML is not intended to be opened directly with a `file://` URL.
-
-## What is included
-
-- The existing V3 film and scroll-video controller, with responsive cinematic controls and a complementary readable business overview.
-- Shared Kazakh, Russian and English dictionaries from the owner's supplied copy file.
-- The unchanged provisional Concept B logo, favicon, opening poster and self-hosted Noto fonts with their licences.
-- The actual eleven-caption timing data for the ten-clip, 50.042-second story.
-- Contact and footer links to `mailto:info@commochain.ltd`.
-- Reduced-motion and failed-media static reading modes.
-
-## Film delivery
-
-The **34.4 MiB film is not in this ZIP or the deployment output**. The browser streams the unchanged MP4 from its existing public media CDN. See `src/content/story-media.json` for the URL. This avoids static-host asset limits.
-
-An internet connection is required for the film. CDN availability is still an external dependency. If it moves later, change only that URL to the replacement public, HTTPS, byte-range-capable MP4 endpoint and redeploy. The local opening poster and text remain available if video loading fails.
-
-## Where to edit
-
-- Visitor copy: `src/content/commochain-copy.kk-ru-en.json`
-- Business overview: `src/content/overview-copy.ts`
-- Field-to-Finance explanation: `src/content/field-to-finance-copy.ts`
-- Story component and interactions: `src/components/story-page.tsx`
-- Styling: `src/story.css`
-- Readable overview and enquiry styling: `src/overview.css`
-- Caption timing: `src/content/story-timing.json`
-- Film/poster locations: `src/content/story-media.json`
-- Site origin/indexing: `site.config.json`
-- Vercel settings: `vercel.json`
-
-## Review items retained
-
-Publication does not verify regulatory status. Outstanding checks remain: licence scope/status, implemented compliance controls, Solana network/deployment, instrument rights and availability, human translation/legal review, mailbox delivery, and physical-device/Safari behavior. Supplied footage retains its baked-in English labels and minor source handoff differences. Concept B remains provisional, not trademark-cleared.
-
-This is a static website package, **not a GitHub Pages configuration**. GitHub Pages project-path hosting would require additional base-path/routing configuration and a review of its commercial-use policy. No deployment or DNS change is performed merely by uploading the source to GitHub.
-
-No platform-internal scaffolding, account credentials or original source videos are included. No new open-source licence is applied to the company code; font licences are included separately.
-
-## Launch-stage business overview
-
-The cinematic opening leads directly to a readable overview in all three languages. The launch protocols distinguish pre-harvest Field-to-Finance from stored-grain warehouse-receipt instruments. Independent verification, issuer obligations, exchange, clearing, registry and compliance responsibilities are explained separately. Future music, gaming and water-facility protocols remain labelled as development concepts.
-
-The company section links the company and AFSA licence records without displaying a licence-status claim. The existing footer qualifications, contact address, film, timing, iOS scrub controller and indexing gate are retained. Canonical URLs use the existing `www` production hostname; no DNS changes are involved.
-
-`npm run build` also generates `/downloads/commoditychain-overview-{en,ru,kk}.html`: self-contained, script-free documents for offline reading or printing. These reuse the localized source copy rather than republishing supplied PDFs. The download URLs are production-build assets, not Vite development routes.
-
-The enquiry form prepares a draft only. It sends no requests, stores no visitor data and requires the visitor to open their email app and send the message. Inputs stay disabled until hydration; without JavaScript, a direct email link replaces the form. No backend, new API, service integration or dependency was introduced.
-
-### Verify changes before a preview
+## Local setup and checks
 
 Use Node.js 22 and the existing npm lockfile:
 
@@ -128,52 +26,40 @@ npm run typecheck
 npm test
 npm run build
 npm run test:built
+npm run preview
 ```
 
-Pure-function/content tests live beside the code. `npm test` also runs the existing 11 deterministic scroll-video controller checks. Built-page tests check every locale, downloadable content, canonical URLs, noindex and the non-JavaScript form fallback. The repository has no configured lint script; do not report lint as passing.
+Open http://127.0.0.1:4173/en (also /ru and /kk). The local static preview intentionally reports the enquiry endpoint unavailable; it never sends email. For frontend development use `npm run dev`.
 
-Review mobile portrait/landscape, chapter jumps and browser history, locale changes, text/failed-media fallback, disclosures and email draft preparation. A physical affected iPhone still needs to verify Safari video behavior. Human review of the Kazakh/Russian translations and instrument-specific legal wording remains a publication step. Use a feature-branch draft PR and Vercel preview; do not merge or deploy production without approval.
+Tests live beside their code. There is no lint script. Parent AGENTS.md also requires pnpm lint/typecheck/test/build; use the installed pnpm runtime to attempt these scripts, without installing dependencies through pnpm or replacing package-lock.json.
 
-## Editorial experience revision
+The optional browser review harness uses an externally installed Playwright package and Chrome, not a project dependency. Current screenshots and measured results are in [the review report](docs/film-return-review.md); [the earlier report](docs/public-site-review.md) is historical. Physical affected-iPhone testing, native-language review and legal review remain separate.
 
-The overview now includes localized audience tabs with contextual enquiry links, a two-engine architecture diagram, an image-led protocol comparison and a connected four-step lifecycle with responsibility and evidence labels. Navigation highlights the section crossing the reading line. The existing mobile section menu retains its keyboard dismissal and now highlights the current section.
+## Content and implementation
 
-Two AI-generated agricultural illustrations are served locally in responsive, lazy-loaded WebP sizes. They are labelled as illustrations, not company facilities or financed fields. Exact prompts and asset provenance are in [docs/editorial-assets.md](docs/editorial-assets.md). No extra video, UI library or application dependency was added; the npm lockfile is unchanged.
+- Company facts, homepage and verification: `src/content/public-site-copy.ts`
+- Supporting business and protocol content: `src/content/overview-copy.ts`, `field-to-finance-copy.ts`, `experience-copy.ts`
+- Film captions and sharing metadata: `src/content/commochain-copy.kk-ru-en.json`
+- Enquiry language: `src/content/enquiry-copy.ts`
+- Reading layout and optional story: `src/components/business-overview.tsx`, `story-page.tsx`
+- Brand foundation: `src/story.css`, `overview.css`, `motion.css`; current surface: `src/public-site.css`
+- Enquiry contract FIRST: `packages/contracts/openapi.yaml`; domain service: `packages/enquiries`; external interfaces: `packages/adapters`; Vercel entry: `api/enquiry.ts`
+- Media source and exact timing: `src/content/story-media.json`, `story-timing.json`
 
-Audience tabs support arrow keys (left/right on desktop, up/down in the mobile layout), Home and End. Their content is available without JavaScript. The lifecycle remains a linear document on mobile, and reduced-motion preferences disable the diagram's decorative connections. All launch-stage wording, risk qualifications, three languages, contacts, source film/controller, indexing and deployment configuration are retained.
+The build generates self-contained, script-free /downloads/commoditychain-overview-{en,ru,kk}.html for offline reading or printing from the same localized content. These are not republished source PDFs.
 
-This revision passed 10 pure-function/content tests, 11 simulated scroll-video controller checks and 15 built-page/download/asset/preview-server checks (36 total), plus TypeScript and the production build using Node.js 22. `pnpm lint` was attempted but the repository has no lint script. Fresh browser/device interaction and visual checks were not performed for this revision; the previous revision's browser checks below do not certify the new layout. An affected physical iPhone and human translation/legal review remain publication checks.
+The original poster, provisional Concept B logo, favicon and self-hosted Noto fonts are retained. The existing local agricultural illustrations are clearly labelled, not presented as satellite evidence or financed company assets. Provenance remains in [editorial assets](docs/editorial-assets.md).
 
-## Partnership and brand-detail refinement
+## Deployment and discovery controls
 
-The company section now describes the owner-supplied strategic partnership with AIFC, through TechHub, to explore and test RWA tokenization as an innovation initiative. This statement is separate from the company-shareholder and AFSA licence records; it does not assert regulatory approval, certification or a licence status. The three localized pages and offline overview documents share the updated wording.
+Keep the existing Vercel Git integration and Node 22 build. Feature-branch pushes create previews; production requires separate approval. Do not change domains, DNS, production variables or the trading application as part of this revision.
 
-That refinement followed the official [Impeccable polish guidance](https://github.com/pbakaus/impeccable), read directly because the skill/launcher was not installed at the time. It reused the existing logo geometry as a quiet background motif, gave the partnership a dedicated feature panel, opened up the architecture and comparison layouts, and replaced inconsistent decorative glyphs with shared accessible SVGs. Full-bleed field imagery, responsive spacing, focus rings, text selection and reduced-motion rules retained the site's existing cinematic identity. No dependency, logo asset, film, controller, contact, regulatory footer, indexing or deployment-setting change was included.
+`site.config.json` retains the production canonical origin https://www.commochain.ltd and `allowIndexing: false`. Existing build overrides `SITE_URL` and `PUBLIC_INDEXABLE` remain unchanged. No automatic indexing approval is implied. Check the actual deployed HTML, robots.txt and headers; the repository flag alone does not establish live indexing state.
 
-Verification for this refinement: TypeScript, production build and all 41 automated checks (10 content/pure-function, 11 simulated video-controller and 20 built-page/component/download/asset/server checks) pass. `pnpm lint` was attempted but cannot run because there is no lint script. A bounded local Chromium review covered desktop (1440 × 1000), mobile (390 × 844 and 320 × 568), short landscape (844 × 390), all three localized partnership layouts, the mobile menu, audience-tab clicks and desktop arrow-key navigation. That review found and corrected narrow-screen Kazakh heading overflow. No browser warning/error was observed in the reviewed session. This is not a physical-iPhone or comprehensive accessibility certification; affected-device, human translation and legal review are still required.
+The build retains localized titles/descriptions, canonical and hreflang links, Open Graph metadata, robots.txt and sitemap.xml. The root redirects to /kk. Downloads remain noindex.
 
-## Impeccable reading-path and motion refinement
+The 34.4 MiB film is not copied into the build output. The cinematic opening uses its existing external media CDN; availability remains an external dependency. Never change that provider or publish a duplicate video as a routine design edit.
 
-The installed Impeccable 4.1.1 skill now guides the refinement. Asset owners and partners remain equally represented. A plain-language tokenization explanation is added to each locale and its offline document. The four-question instrument checklist, comparison evidence, step-by-step responsibility register and stored-grain documentation use native disclosures. The main lifecycle and all risk/ownership qualifications remain visible; no substantive supporting explanation was discarded. The repeated comparison photos are removed so each agricultural scene appears once.
+No new tracking service is activated. `commoditychain:public-event` CustomEvent hooks expose only named actions and an optional enumerated category, never enquiry contents.
 
-The two editorial photos use bounded CSS scroll-timeline parallax on supported viewports at least 768px wide, with stationary text. Mobile, reduced-motion and unsupported browsers retain static images. There is no motion library, JavaScript scroll handler, autoplay loop or change to the opening film. The former continuously animated diagram connection and decorative diagram grid are removed. See [MDN's scroll-animation timeline guidance](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations/Timelines) for the progressive-enhancement mechanism.
-
-The manual Impeccable detector was run once on changed UI targets; its two legacy side-border warnings and decorative-grid advisory were addressed. TypeScript, the production build and 45 checks pass (10 content/pure-function, 11 simulated video-controller and 24 built-page/component/download/asset/server checks). `pnpm lint` remains unavailable because no lint script is configured. Local browser verification covers the new disclosures, all three languages at 320px, a 390px static mobile hero, a 1440px desktop layout and an 844px short-landscape layout. Physical iPhone and reduced-motion OS/device verification remain required. Information priorities and deliberately deferred content are in [docs/refinement-review.md](docs/refinement-review.md).
-
-## Checks completed for the preceding business-overview revision
-
-The business-overview revision passed TypeScript, the production build, seven content/navigation/enquiry tests, eleven simulated scroll-video controller tests and seven built-page/download tests. Local Chromium checks covered narrow portrait and short landscape layouts, language switching without resetting the video position, forward/backward seeking, section navigation, disclosures, keyboard menu dismissal, text/failed-media fallback and preparation/copying of an unsent enquiry. All three built locale routes and overview downloads returned HTTP 200. These checks do not certify physical iOS behavior.
-
-## Accessible microinteractions and release verification
-
-Impeccable's animate guidance informs a small motion layer in `src/motion.css`: 140ms button/focus feedback, 240ms audience-tab and mobile-menu transitions, native disclosure fades, unsent-draft feedback and a one-shot sequence of border highlights across the two-engine diagram. The diagram uses one IntersectionObserver, disconnects after entry and cleans up on unmount or a reduced-motion preference change. Text is never hidden while awaiting an animation. There are no loops, simulated live transactions, scroll-state updates or new dependencies. Existing photo parallax and the original film/controller remain unchanged.
-
-All decorative additions are gated by reduced-motion preferences. Native disclosures still work without JavaScript and without support for their optional `::details-content` animation. The complete static design remains the fallback.
-
-Node 22.23.2 verification passed TypeScript, the production build and 53 checks: 17 content/pure-function/lifecycle tests, 11 simulated scroll-video checks and 25 built-page/component/download/asset/server checks. `pnpm lint` was attempted but remains unavailable because no lint script exists. The manual Impeccable detector reported no findings on this revision's changed UI targets; `git diff --check` passed.
-
-A bounded local Chromium review covered desktop (1440 × 1000) tab clicks and arrow keys, active navigation underlines, one-shot diagram entry, keyboard disclosure open/close, unsent draft preparation and invalidation on edit; mobile (390 × 844) menu reveal/Escape and vertical tab keys; all three languages at 320 × 568 without horizontal overflow; and scrollable-menu navigation in short landscape (844 × 390). No browser warning/error was observed. Reduced-motion lifecycle and CSS guards were checked in automated tests, not with an OS preference or a physical iPhone. Human translation/legal review and affected-iPhone testing remain outstanding.
-
-The owner authorized production publication of the current preview and these microinteractions on 2026-09-09. Release proceeds through the existing feature PR and normal Git/Vercel integration, subject to repository permissions and protections; this source note alone does not assert that deployment succeeded. DNS, indexing, regulatory claims, contacts and dependency lockfile are unchanged.
-
-References: [Vercel commercial-use policy](https://vercel.com/docs/limits/fair-use-guidelines), [Vercel domain setup](https://vercel.com/docs/domains/working-with-domains/add-a-domain), [Porkbun DNS guide](https://kb.porkbun.com/article/231-how-to-add-dns-records-on-porkbun).
+Do not commit node_modules, dist, .build, .vercel, local .env files, credentials or confidential documents. No new company-code licence is granted; existing font licences remain included.

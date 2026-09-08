@@ -1,0 +1,202 @@
+{
+  "results": [
+    {
+      "name": "before-desktop",
+      "status": "pass",
+      "width": 1440,
+      "overviewTop": 9500,
+      "trackHeight": 9500
+    },
+    {
+      "name": "before-mobile",
+      "status": "pass",
+      "width": 390,
+      "overviewTop": 6844,
+      "trackHeight": 6844
+    },
+    {
+      "name": "tablet-en",
+      "status": "pass",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 705.4375,
+      "assetsTop": 1019.5625,
+      "headingOverflow": []
+    },
+    {
+      "name": "tablet-ru",
+      "status": "pass",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 802.03125,
+      "assetsTop": 1139.546875,
+      "headingOverflow": []
+    },
+    {
+      "name": "tablet-kk",
+      "status": "pass",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 904.015625,
+      "assetsTop": 1241.53125,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop-en",
+      "status": "pass",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 760.71875,
+      "assetsTop": 938.28125,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop-ru",
+      "status": "pass",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 760.71875,
+      "assetsTop": 961.671875,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop-kk",
+      "status": "pass",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 847.875,
+      "assetsTop": 1033.4375,
+      "headingOverflow": []
+    },
+    {
+      "name": "landscape-en",
+      "status": "pass",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 579.046875,
+      "assetsTop": 893.171875,
+      "headingOverflow": []
+    },
+    {
+      "name": "landscape-ru",
+      "status": "pass",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 772.03125,
+      "assetsTop": 1109.546875,
+      "headingOverflow": []
+    },
+    {
+      "name": "landscape-kk",
+      "status": "pass",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 850.921875,
+      "assetsTop": 1165.046875,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop evidence and governance screenshots",
+      "status": "pass"
+    },
+    {
+      "name": "audience context and validation",
+      "status": "pass"
+    },
+    {
+      "name": "optional story entry, seeking, locale and focus restoration",
+      "status": "pass",
+      "forward": "5.0925",
+      "backward": "0.0000",
+      "media": {
+        "time": 0,
+        "readyState": 0,
+        "paused": false,
+        "scrubState": "loading"
+      }
+    },
+    {
+      "name": "failed media falls back to text and exits",
+      "status": "pass"
+    },
+    {
+      "name": "reduced motion starts static and preserves the homepage",
+      "status": "pass"
+    },
+    {
+      "name": "mobile menu keyboard dismissal and short-landscape navigation",
+      "status": "pass"
+    },
+    {
+      "name": "no-JavaScript reading and native evidence disclosures",
+      "status": "pass"
+    },
+    {
+      "name": "mock online acceptance, duplicate prevention, provider failure and recovery",
+      "status": "pass",
+      "mockedRequests": 3
+    }
+  ],
+  "issues": [
+    {
+      "name": "narrow-en",
+      "error": "Horizontal overflow"
+    },
+    {
+      "name": "narrow-ru",
+      "error": "Horizontal overflow"
+    },
+    {
+      "name": "narrow-kk",
+      "error": "Horizontal overflow"
+    },
+    {
+      "name": "mobile-en",
+      "error": "Horizontal overflow"
+    },
+    {
+      "name": "mobile-ru",
+      "error": "Horizontal overflow"
+    },
+    {
+      "name": "mobile-kk",
+      "error": "Horizontal overflow"
+    },
+    {
+      "name": "no unexpected browser errors",
+      "error": "Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\nMinified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\nMinified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\nMinified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\nMinified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+    }
+  ],
+  "webkit": {
+    "available": false,
+    "tested": false
+  },
+  "physicalIPhone": false
+}

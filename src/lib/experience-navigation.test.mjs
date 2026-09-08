@@ -31,5 +31,6 @@ test('section tracking handles the film, long sections, gaps and exact boundarie
   assert.equal(sectionAtReadingLine(bounds, 9050), null);
   assert.equal(sectionAtReadingLine(bounds, 10000), 'contact');
   assert.equal(sectionAtReadingLine(bounds, 12000), null);
-  assert.deepEqual(bounds.map(section => section.key), sectionKeys);
+  // Synthetic bounds above exercise geometry independently of the public reading order.
+  assert.deepEqual(sectionKeys, ['overview','assets','verification','infrastructure','participation','company','faq','contact','deeper']);
 });

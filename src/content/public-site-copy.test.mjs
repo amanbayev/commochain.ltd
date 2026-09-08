@@ -1,0 +1,6 @@
+import assert from 'node:assert/strict';
+import { test } from 'node:test';
+import { companyFacts,publicSiteCopy } from './public-site-copy.ts';
+import { enquiryCopy } from './enquiry-copy.ts';
+test('certificate metadata and confirmed governance facts are centralised',()=>{assert.deepEqual(companyFacts,{legalName:'Commodity Chain Ltd.',bin:'250540900471',licence:'AFSA-A-LA-2026-0014',institution:'Authorised Market Institution',issued:'2026-06-18',expires:'2028-06-17',shareholder:'Tech Hub Limited',equity:'10%',boardSeats:'1'});});
+test('every locale has the same complete public copy and verification method',()=>{const shape=v=>Array.isArray(v)?v.map(shape):typeof v==='object'?Object.fromEntries(Object.entries(v).map(([k,x])=>[k,shape(x)])):(assert.ok(typeof v==='string'&&v.trim()),'text');for(const copy of [publicSiteCopy,enquiryCopy])for(const locale of ['ru','kk'])assert.deepEqual(shape(copy[locale]),shape(copy.en));for(const p of Object.values(publicSiteCopy)){assert.equal(p.evidence.length,5);assert.equal(p.questions.length,5);assert.ok(p.stage.includes('AFSA'));assert.ok(p.shareholderBody.includes('10%'));assert.ok(p.shareholderBody.includes('Tech Hub Limited'));assert.ok(p.evidence[2].body.includes('NDVI'));assert.ok(p.solanaBody.length>200);}});

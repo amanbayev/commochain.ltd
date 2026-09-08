@@ -1,0 +1,93 @@
+// Optional review harness: uses an externally installed Playwright runtime, not a site dependency.
+// No real enquiries are sent: online states intercept /api/enquiry with explicit mock responses.
+import { createRequire } from 'node:module';
+import { mkdir,writeFile,existsSync } from 'node:fs';
+import { promisify } from 'node:util';
+import { resolve } from 'node:path';
+const require=createRequire(import.meta.url);
+const {chromium,webkit}=require(process.env.CC_PLAYWRIGHT_MODULE || 'playwright');
+const base=process.env.CC_REVIEW_URL || 'http://127.0.0.1:4174';
+if(!/^http:\/\/127\.0\.0\.1:\d+$/.test(base))throw Error('Interaction checks are restricted to a local preview.');
+const output=resolve(process.env.CC_REVIEW_OUTPUT || 'docs/review-film-return');
+await promisify(mkdir)(output,{recursive:true});
+const browser=await chromium.launch({executablePath:process.env.CC_CHROME_PATH,headless:true});
+const results=[],issues=[];
+async function check(name,fn){try{const value=await fn();results.push({name,status:'pass',...value});console.log('PASS',name,JSON.stringify(value||{}));}catch(error){issues.push({name,error:error.message});console.log('FAIL',name,error.message);}}
+const assert=(ok,message)=>{if(!ok)throw Error(message);};
+const context=await browser.newContext({viewport:{width:1440,height:1000}});
+const page=await context.newPage();page.setDefaultTimeout(8000);
+const consoleErrors=[];page.on('pageerror',e=>consoleErrors.push({text:e.message,url:''}));
+page.on('console',message=>{if(message.type()==='error')consoleErrors.push({text:message.text(),url:message.location().url});});
+const metrics=()=>page.evaluate(()=>({width:innerWidth,height:innerHeight,overflow:document.documentElement.scrollWidth>innerWidth,videoCount:document.querySelectorAll('video').length,heroTop:document.querySelector('#overview').getBoundingClientRect().top,credibilityTop:document.querySelector('.credibility-strip').getBoundingClientRect().top,assetsTop:document.querySelector('#assets').getBoundingClientRect().top,headingOverflow:[...document.querySelectorAll('h1,h2,h3,summary')].filter(e=>{const r=e.getBoundingClientRect();return r.width>0&&(r.left<0||r.right>innerWidth+1);}).map(e=>e.textContent)}));
+try {
+  if(process.env.CC_CAPTURE_BEFORE==='true'){
+    for(const [label,width,height] of [['desktop',1440,1000],['mobile',390,844]]) {
+      await page.setViewportSize({width,height});await page.goto(`${base}/ru#deeper`,{waitUntil:'domcontentloaded'});
+      await page.locator('#deeper summary').first().waitFor();await page.evaluate(()=>scrollTo(0,document.body.scrollHeight));
+      await page.screenshot({animations:'disabled',path:resolve(output,`before-footer-${label}.png`)});
+      await page.locator('.grain-detail summary').click();await page.locator('.grain-detail .detail-content, .grain-detail').last().screenshot({animations:'disabled',path:resolve(output,`before-grain-detail-${label}.png`)});
+    }
+    await browser.close();process.exit(0);
+  }
+  consoleErrors.length=0;
+  for(const [label,width,height] of [['narrow',320,568],['mobile',390,844],['tablet',768,1024],['desktop',1440,1000],['landscape',844,390]])for(const locale of ['en','ru','kk'])await check(`${label}-${locale}`,async()=>{
+    await page.setViewportSize({width,height});await page.goto(`${base}/${locale}`,{waitUntil:'domcontentloaded'});await page.locator('#enquiry-name:enabled').waitFor();await page.evaluate(()=>document.fonts.ready);const value=await metrics();assert(!value.overflow,'Horizontal overflow');assert(!value.headingOverflow.length,'Heading overflow: '+value.headingOverflow.join('; '));assert(value.videoCount===1,'Default homepage must mount exactly one film');assert(value.heroTop>height,'Film no longer precedes the business overview');
+    if(locale==='ru'&&['mobile','desktop'].includes(label))await page.screenshot({animations:'disabled',path:resolve(output,`after-${label}.png`)});return value;
+  });
+  await page.setViewportSize({width:1440,height:1000});await page.goto(`${base}/en`,{waitUntil:'domcontentloaded'});
+  await check('desktop evidence and governance screenshots',async()=>{await page.goto(`${base}/en#verification`,{waitUntil:'domcontentloaded'});await page.screenshot({animations:'disabled',path:resolve(output,'after-verification.png')});await page.goto(`${base}/en#company`,{waitUntil:'domcontentloaded'});await page.screenshot({animations:'disabled',path:resolve(output,'after-company.png')});});
+  await check('audience context and validation',async()=>{await page.getByRole('tab',{name:'Investor / finance partner',exact:true}).click();await page.getByRole('link',{name:'Discuss participation requirements',exact:true}).click();assert(await page.locator('#enquiry-role').inputValue()==='investor','Role lost');await page.getByRole('button',{name:'Prepare an email',exact:true}).click();assert(await page.locator('#enquiry-name').getAttribute('aria-invalid')==='true','Missing labelled error');assert(await page.locator('#error-name').isVisible(),'Error not visible');await page.locator('#enquiry-name').fill('Local QA');await page.locator('#enquiry-email').fill('qa@example.com');await page.locator('#enquiry-project').fill('Local browser verification only. Do not send.');await page.getByRole('button',{name:'Prepare an email',exact:true}).click();assert((await page.locator('#enquiry-draft').inputValue()).includes('Investor / financial partner'),'Draft lost role');assert(await page.locator('.enquiry-result').innerText().then(v=>v.includes('Nothing has been sent')),'Unsent label missing');});
+  await check('cinematic opening, forward/backward seeking, locale continuity and reading links',async()=>{
+    await page.goto(`${base}/en`,{waitUntil:'domcontentloaded'});await page.locator('video').waitFor();const film=await page.locator('video').elementHandle();
+    assert(await page.locator('.story-stage').evaluate(e=>Math.abs(e.getBoundingClientRect().top)<2),'Film is not first');
+    await page.getByRole('button',{name:'Next chapter',exact:true}).click();await page.waitForFunction(()=>document.querySelector('.story-stage').dataset.chapter==='rights');
+    const forward=await page.locator('.story-stage').getAttribute('data-target-time');
+    await page.waitForFunction(()=>{const v=document.querySelector('video');return v?.readyState>=2&&!v.seeking&&Math.abs(v.currentTime-Number(document.querySelector('.story-stage').dataset.targetTime))<.12;},{},{timeout:20000});
+    const presentedForward=await film.evaluate(v=>v.currentTime);
+    await page.getByRole('link',{name:'Русский',exact:true}).click();assert(await page.locator('.story-stage').getAttribute('data-chapter')==='rights','Locale reset chapter');
+    assert(await film.evaluate(v=>v===document.querySelector('video')),'Language switching remounted film');
+    await page.getByRole('button',{name:'Предыдущая глава',exact:true}).click();await page.waitForFunction(()=>document.querySelector('.story-stage').dataset.chapter==='field');
+    const backward=await page.locator('.story-stage').getAttribute('data-target-time');
+    await page.waitForFunction(()=>document.querySelector('video')?.readyState>=2,{},{timeout:12000}).catch(()=>{});
+    const media=await film.evaluate(v=>({time:v.currentTime,readyState:v.readyState,paused:v.paused}));
+    await page.locator('.story-partnership').click();await page.waitForFunction(()=>document.activeElement.id==='overview-title');
+    assert(await page.locator('.public-reading').isVisible(),'Business content hidden');
+    await page.locator('#open-story').click();await page.waitForFunction(()=>scrollY<2);assert(await page.locator('video').count()===1,'Replay duplicates film');
+    return{forward,presentedForward,backward,media};
+  });
+  await check('logo, expanded reading and footer spacing on desktop and mobile',async()=>{
+    const measurements=[];
+    for(const [label,width,height] of [['desktop',1440,1000],['mobile',390,844]]) {
+      await page.setViewportSize({width,height});await page.goto(`${base}/ru#company`,{waitUntil:'domcontentloaded'});
+      await page.locator('.techhub-logo').scrollIntoViewIfNeeded();await page.locator('.techhub-logo').evaluate(img=>img.decode());
+      assert(await page.locator('.techhub-logo').evaluate(img=>img.naturalWidth===1949),'Partner image unavailable');
+      await page.screenshot({animations:'disabled',path:resolve(output,`after-logo-${label}.png`)});
+      await page.locator('.grain-detail summary').click();await page.locator('.grain-detail').screenshot({animations:'disabled',path:resolve(output,`after-grain-detail-${label}.png`)});
+      const detail=await page.locator('.grain-detail .detail-content').evaluate(e=>({bottomPadding:getComputedStyle(e).paddingBottom,paragraphGap:getComputedStyle(e.querySelector('p')).marginBottom}));
+      assert(parseFloat(detail.bottomPadding)>=32,'Expanded content touches border');assert(parseFloat(detail.paragraphGap)>=24,'Paragraphs run together');
+      await page.locator('.grain-detail summary').click();await page.evaluate(()=>scrollTo(0,document.body.scrollHeight));
+      await page.screenshot({animations:'disabled',path:resolve(output,`after-footer-${label}.png`)});
+      const spacing=await page.evaluate(()=>({sidePadding:getComputedStyle(document.querySelector('#deeper')).paddingLeft,sectionPadding:getComputedStyle(document.querySelector('#deeper')).paddingBottom,footerPadding:getComputedStyle(document.querySelector('.story-footer')).paddingTop,gap:document.querySelector('.story-footer-top').getBoundingClientRect().top-document.querySelector('.deeper-return').getBoundingClientRect().bottom}));
+      assert(parseFloat(spacing.sidePadding)>=22,'Missing inherited horizontal gutters');assert(spacing.gap>=80,'Footer separation too tight');measurements.push({label,detail,spacing});
+      assert(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),'Expanded section overflows');
+    }
+    return{measurements};
+  });
+  await check('failed media falls back to text and preserves business access',async()=>{await page.goto(`${base}/en?media=fail#story`,{waitUntil:'domcontentloaded'});await page.locator('.story-static').waitFor({state:'visible'});assert(await page.locator('video').count()===0,'Failed video remains mounted');assert(await page.locator('#text-grain').count()===1,'Fallback chapters missing');await page.locator('.static-opening a[href="#overview"]').click();assert(await page.locator('.public-reading').isVisible(),'Cannot return to business');});
+  await check('reduced motion starts static and preserves the homepage',async()=>{await page.emulateMedia({reducedMotion:'reduce'});await page.goto(`${base}/en#story`,{waitUntil:'domcontentloaded'});assert(await page.locator('.story-static').isVisible(),'Reduced-motion story not static');assert(await page.locator('video').count()===0,'Reduced-motion film loaded');await page.locator('.static-opening a[href="#overview"]').click();assert(await page.locator('.public-hero').isVisible(),'Homepage lost');assert(await page.locator('.editorial-photo img').first().evaluate(e=>getComputedStyle(e).animationName)==='none','Photo animates in reduced motion');await page.emulateMedia({reducedMotion:'no-preference'});});
+  await check('mobile menu keyboard dismissal and short-landscape navigation',async()=>{for(const [width,height] of [[390,844],[844,390]]){await page.setViewportSize({width,height});await page.goto(`${base}/en`,{waitUntil:'domcontentloaded'});await page.getByRole('button',{name:'Menu',exact:true}).click();await page.keyboard.press('Escape');assert(await page.locator('.story-menu').count()===0,'Menu stays open');await page.getByRole('button',{name:'Menu',exact:true}).click();await page.locator('.story-menu').getByRole('link',{name:'Contact',exact:true}).click();assert(await page.locator('.story-menu').count()===0,'Menu fails to close on navigation');assert(new URL(page.url()).hash==='#contact','Anchor failed');}});
+  await check('no-JavaScript reading and native evidence disclosures',async()=>{const c=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});const p=await c.newPage();await p.goto(`${base}/ru`);assert(await p.locator('.story-static').isVisible(),'No-JS cinematic text absent');assert(await p.locator('.public-hero').isVisible(),'No-JS business absent');assert(await p.locator('.enquiry-form').isHidden(),'No-JS form misleading');await p.locator('.comparison-detail summary').click();assert(await p.locator('.comparison-detail').getAttribute('open')!==null,'Native details broken');assert(await p.locator('.audience-panel').count()===3,'No-JS audiences absent');await p.locator('#full-story-text summary').click();assert(await p.locator('#full-story-text article').count()===11,'No-JS full text absent');await c.close();});
+  await check('mock online acceptance, duplicate prevention, provider failure and recovery',async()=>{
+    const c=await browser.newContext({viewport:{width:1440,height:1000}});const p=await c.newPage();let sent=0,mode='accepted',identities=[];
+    await p.route('**/api/enquiry',async route=>{if(route.request().method()==='GET')return route.fulfill({json:{available:true}});sent++;const body=route.request().postDataJSON();identities.push([body.eventId,body.nonce]);await new Promise(r=>setTimeout(r,250));return route.fulfill({status:mode==='accepted'?202:502,json:mode==='accepted'?{status:'accepted',eventId:body.eventId}:{error:'acceptance_unconfirmed'}});});
+    await p.goto(`${base}/en#contact`);await p.getByRole('button',{name:'Send enquiry',exact:true}).waitFor();await p.locator('#enquiry-name').fill('Mocked QA');await p.locator('#enquiry-email').fill('qa@example.com');await p.locator('#enquiry-project').fill('Mocked provider flow, never sent.');await p.locator('[name=consent]').check();await p.getByRole('button',{name:'Send enquiry',exact:true}).click();assert(await p.locator('.enquiry-submit').isDisabled(),'Pending submit not disabled');await p.getByRole('status').filter({hasText:'accepted by our email provider'}).waitFor();assert(sent===1,'Duplicate send');assert(await p.locator('.enquiry-submit').isDisabled(),'Accepted submit not disabled');
+    await p.getByRole('button',{name:'Start another enquiry',exact:true}).click();mode='failed';await p.locator('#enquiry-name').fill('Mocked QA');await p.locator('#enquiry-email').fill('qa@example.com');await p.locator('#enquiry-project').fill('Mocked failure only.');await p.locator('[name=consent]').check();await p.getByRole('button',{name:'Send enquiry',exact:true}).click();await p.getByRole('button',{name:'Retry the same enquiry',exact:true}).waitFor();await p.getByRole('button',{name:'Retry the same enquiry',exact:true}).click();await p.getByRole('button',{name:'Retry the same enquiry',exact:true}).waitFor();assert(JSON.stringify(identities[1])===JSON.stringify(identities[2]),'Retry changes idempotency identity');await c.close();return{mockedRequests:sent};
+  });
+  // A deliberate /missing-v3-test.mp4 request is expected during the failure-path check.
+  const unexpected=consoleErrors.filter(x=>!(x.text.includes('404 (Not Found)')&&x.url.includes('missing-v3-test.mp4')));
+  await check('no unexpected browser errors',async()=>{assert(!unexpected.length,unexpected.map(x=>x.text+' '+x.url).join('\n'));return{errors:unexpected.length};});
+} finally {
+  await browser.close();
+  await promisify(writeFile)(resolve(output,'results.json'),JSON.stringify({results,issues,webkit:{available:existsSync(webkit.executablePath()),tested:false},physicalIPhone:false},null,2));
+}
+if(issues.length)process.exitCode=1;

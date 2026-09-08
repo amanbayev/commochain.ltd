@@ -1,0 +1,67 @@
+openapi: 3.1.0
+info:
+  title: CommodityChain public enquiry boundary
+  version: 1.0.0
+paths:
+  /api/enquiry:
+    get:
+      operationId: enquiryAvailability
+      summary: Discover whether delivery and durable abuse controls are configured
+      responses:
+        '200':
+          description: No secrets or provider details are returned
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [available]
+                properties:
+                  available: {type: boolean}
+    post:
+      operationId: submitEnquiry
+      summary: Request provider acceptance, not confirmed mailbox delivery
+      description: Same-origin JSON only. Maximum UTF-8 request size 8192 bytes. No uploads. Requests expire after ten minutes; retry with unchanged eventId, nonce, createdAt and body. Durable guard bounds per-client requests and prevents replay. No content is logged or sent to analytics.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Enquiry'
+      responses:
+        '202':
+          description: Accepted by the provider; delivery is not confirmed
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, eventId]
+                properties:
+                  status: {const: accepted}
+                  eventId: {type: string, format: uuid}
+        '400': {description: Invalid fields, expired request or honeypot populated; field names only in response}
+        '403': {description: Origin not allowed}
+        '405': {description: Method not allowed}
+        '409': {description: Duplicate request pending or idempotency identity reused with different content}
+        '413': {description: Request too large}
+        '415': {description: JSON required}
+        '429': {description: Rate limited; Retry-After seconds provided}
+        '502': {description: Provider acceptance not confirmed; retry with the same identity or use email}
+        '503': {description: Delivery not configured or abuse-protection store unavailable; use email}
+components:
+  schemas:
+    Enquiry:
+      type: object
+      additionalProperties: false
+      required: [name, email, organisation, role, message, locale, consent, website, eventId, nonce, createdAt]
+      properties:
+        name: {type: string, minLength: 1, maxLength: 100}
+        email: {type: string, format: email, maxLength: 254}
+        organisation: {type: string, maxLength: 160}
+        role: {enum: [farmer, investor, warehouse, other]}
+        message: {type: string, minLength: 10, maxLength: 1500}
+        locale: {enum: [kk, ru, en]}
+        consent: {const: true}
+        website: {type: string, maxLength: 0, description: Honeypot must remain empty}
+        eventId: {type: string, format: uuid}
+        nonce: {type: string, format: uuid}
+        createdAt: {type: string, format: date-time}

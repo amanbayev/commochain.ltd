@@ -4,6 +4,7 @@ import { test } from 'node:test';
 import { experienceCopy } from '../content/experience-copy.ts';
 import { fieldToFinanceCopy } from '../content/field-to-finance-copy.ts';
 import { overviewCopy } from '../content/overview-copy.ts';
+import { publicSiteCopy } from '../content/public-site-copy.ts';
 
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 const escape = text => text.replaceAll('&', '&amp;').replaceAll("'", '&#x27;');
@@ -20,11 +21,11 @@ for (const locale of ['en', 'ru', 'kk']) {
       assert.ok(!detail.slice(0, detail.indexOf('>')).includes(' open'));
       assert.match(detail, /<summary>.+class="disclosure-mark"/);
     }
-    for (const label of [experience.reading.instrumentChecklist, experience.reading.comparisonDetails, experience.reading.journeyDetails, experience.reading.grainDetails]) {
+    for (const label of [overview.process.title, experience.reading.comparisonDetails, experience.reading.journeyDetails, experience.reading.grainDetails]) {
       assert.ok(details.some(detail => detail.includes(escape(label))));
     }
     const visibleReading = html.replace(/<details[\s\S]*?<\/details>/g, '');
-    for (const text of [field.rights, field.risk, overview.grain.note, overview.overview.statusBody, experience.reading.definitionBody]) {
+    for (const text of [field.rights, field.risk, publicSiteCopy[locale].permissions, overview.overview.statusBody, publicSiteCopy[locale].storageBody, publicSiteCopy[locale].solanaBody]) {
       assert.ok(visibleReading.includes(escape(text)), `Qualification must not be collapsed: ${text}`);
     }
     for (const text of [
