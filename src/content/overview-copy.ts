@@ -7,7 +7,7 @@ type OverviewCopy = {
   overview: { eyebrow: string; title: string; body: string; status: string; statusBody: string; audienceTitle: string; audiences: Item[] };
   process: { eyebrow: string; title: string; body: string; engines: Item[]; stepsTitle: string; steps: Item[] };
   grain: { eyebrow: string; title: string; body: string; imageCaption: string; facts: Item[]; structuresTitle: string; structures: Item[]; evidenceTitle: string; evidenceBody: string; note: string; watch: string; more: string; concepts: Item[] };
-  company: { eyebrow: string; title: string; body: string; shareholder: string; shareholderBody: string; licence: string; recordNote: string };
+  company: { eyebrow: string; title: string; body: string; shareholder: string; shareholderBody: string; partnershipLabel: string; partnershipTitle: string; partnershipBody: string; licence: string; recordNote: string };
   enquiry: { title: string; body: string; name: string; email: string; organisation: string; project: string; placeholder: string; submit: string; notice: string; prepared: string; copy: string; copied: string; copyFailed: string; draft: string; nextTitle: string; nextBody: string };
 };
 
@@ -72,6 +72,8 @@ export const overviewCopy = {
       eyebrow: 'The company behind the story', title: 'A conversation with Commodity Chain Ltd.',
       body: 'Commodity Chain Ltd. is at launch stage, with AIFC TechHub among its shareholders. Explore the company and regulatory records alongside the platform’s development plans.',
       shareholder: 'AIFC TechHub', shareholderBody: 'Listed in the company register as Tech Hub Limited, an active shareholder.',
+      partnershipLabel: 'Strategic innovation partnership', partnershipTitle: 'Testing real-world asset tokenization.',
+      partnershipBody: 'A strategic partnership with AIFC, through TechHub, to explore and test real-world asset (RWA) tokenization as an innovation initiative.',
       licence: 'AFSA licence record',
       recordNote: 'The record lists Operating an Exchange and Operating a Clearing House for a facility for Investment Tokens. Consult the linked record for the current status and scope.',
     },
@@ -145,6 +147,8 @@ export const overviewCopy = {
       eyebrow: 'Компания, стоящая за историей', title: 'Диалог с Commodity Chain Ltd.',
       body: 'Commodity Chain Ltd. находится на этапе запуска. Среди акционеров — AIFC TechHub. Изучите сведения о компании и регуляторные записи вместе с планами развития платформы.',
       shareholder: 'AIFC TechHub', shareholderBody: 'В реестре компании указан как Tech Hub Limited, действующий акционер.',
+      partnershipLabel: 'Стратегическое инновационное партнёрство', partnershipTitle: 'Тестирование токенизации реальных активов.',
+      partnershipBody: 'Стратегическое партнёрство с МФЦА через TechHub для изучения и тестирования токенизации реальных активов (RWA) в рамках инновационной инициативы.',
       licence: 'Запись о лицензии AFSA',
       recordNote: 'В записи указаны Operating an Exchange и Operating a Clearing House для площадки Investment Tokens. Актуальный статус и объём деятельности смотрите по ссылке.',
     },
@@ -218,6 +222,8 @@ export const overviewCopy = {
       eyebrow: 'Оқиғаның артындағы компания', title: 'Commodity Chain Ltd. компаниясымен диалог.',
       body: 'Commodity Chain Ltd. іске қосылу кезеңінде. Акционерлердің қатарында AIFC TechHub бар. Компания туралы деректерді, реттеуші жазбаларды және платформаның даму жоспарларын қарастырыңыз.',
       shareholder: 'AIFC TechHub', shareholderBody: 'Компания тізілімінде Tech Hub Limited атауымен белсенді акционер ретінде көрсетілген.',
+      partnershipLabel: 'Стратегиялық инновациялық серіктестік', partnershipTitle: 'Нақты активтерді токенизациялауды сынау.',
+      partnershipBody: 'Инновациялық бастама аясында нақты активтерді (RWA) токенизациялауды зерттеу және сынау үшін TechHub арқылы АХҚО-мен стратегиялық серіктестік.',
       licence: 'AFSA лицензиясы туралы жазба',
       recordNote: 'Жазбада Investment Tokens алаңы үшін Operating an Exchange және Operating a Clearing House қызметтері көрсетілген. Өзекті мәртебе мен қызмет ауқымын сілтемеден қараңыз.',
     },

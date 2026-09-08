@@ -11,6 +11,7 @@ import { BusinessOverview } from './business-overview';
 import { EnquiryForm } from './enquiry-form';
 import { sectionKeys, sectionAtReadingLine, type SectionKey } from '../lib/experience-navigation';
 import { experienceCopy } from '../content/experience-copy';
+import { LinkArrow } from './brand-details';
 
 const duration = timing.duration_seconds;
 const chapters = timing.captions;
@@ -248,7 +249,7 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
       <nav className="story-main-nav" aria-label={t.navigation.story}>{sectionKeys.map(key=><a key={key} href={'#'+key} aria-current={activeSection === key ? 'location' : undefined} onClick={e=>goToSection(key,e)}>{overview.nav[key]}</a>)}</nav>
       <nav className="story-languages" aria-label={t.ui.language}>{storyLocaleOrder.map(l=><a key={l} href={offline?`#/${l}/story`:`/${l}`} hrefLang={l} lang={l} aria-current={locale===l?'true':undefined} onClick={e=>language(e,l)}>{storyCopy[l].languageName}</a>)}</nav>
       <button ref={menuButtonRef} className="story-mobile-menu" aria-expanded={menu} aria-controls="story-menu" onClick={()=>setMenu(!menu)}>{menu?t.ui.closeMenu:t.ui.menu}</button>
-      {menu&&<nav id="story-menu" className="story-menu" aria-label={experienceCopy[locale].jump}>{sectionKeys.map((key,index)=><a key={key} href={'#'+key} aria-current={activeSection === key ? 'location' : undefined} onClick={e=>goToSection(key,e)}><span aria-hidden="true">0{index+1}</span>{overview.nav[key]}<span aria-hidden="true">↗</span></a>)}</nav>}
+      {menu&&<nav id="story-menu" className="story-menu" aria-label={experienceCopy[locale].jump}>{sectionKeys.map(key=><a key={key} href={'#'+key} aria-current={activeSection === key ? 'location' : undefined} onClick={e=>goToSection(key,e)}>{overview.nav[key]}<LinkArrow/></a>)}</nav>}
     </header>
     <main>
       <div id="story" ref={trackRef} className="story-track" hidden={staticMode}>
@@ -279,7 +280,7 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
       </section>
       <noscript><style>{'.story-track,.grain-film-link,.story-mobile-menu,.static-opening button{display:none!important}.story-static{display:block!important}.story-header{position:absolute}'}</style></noscript>
       <BusinessOverview locale={locale} onContact={contact} onGrain={event=>{event.preventDefault();goToChapter(chapters.findIndex(chapter=>chapter.key==='grain'));}}/>
-      <section id="contact" className="story-contact"><span className="section-eyebrow">05 / {overview.nav.contact}</span><h2 tabIndex={-1}>{t.scenes.closing.headline}</h2><div className="enquiry-layout"><div className="enquiry-intro"><p className="closing-intro">{t.scenes.closing.body}</p><h3>{overview.enquiry.nextTitle}</h3><p>{overview.enquiry.nextBody}</p><a className="public-email" href={storyShared.emailHref} aria-label={t.ui.emailLinkLabel}>{storyShared.email}<span className="css-arrow" aria-hidden="true"/></a></div><EnquiryForm locale={locale}/></div></section>
+      <section id="contact" className="story-contact"><h2 tabIndex={-1}>{t.scenes.closing.headline}</h2><div className="enquiry-layout"><div className="enquiry-intro"><p className="closing-intro">{t.scenes.closing.body}</p><h3>{overview.enquiry.nextTitle}</h3><p>{overview.enquiry.nextBody}</p><a className="public-email" href={storyShared.emailHref} aria-label={t.ui.emailLinkLabel}>{storyShared.email}<span className="css-arrow" aria-hidden="true"/></a></div><EnquiryForm locale={locale}/></div></section>
     </main>
     <footer className="story-footer"><div className="story-footer-top"><span>{storyShared.domain}</span><a href="#story" onClick={backToStory}>{t.ui.backToTop}</a></div><div className="story-company"><div><span>{t.footer.company}</span><strong lang="en">{storyShared.legalName}</strong><span>{t.footer.bin} {storyShared.bin}</span><a href={storyShared.emailHref}>{storyShared.email}</a></div><nav aria-label={t.footer.company}><a href={storyShared.registerUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t.footer.register}, ${t.ui.externalLink}`}>{t.footer.register}</a><a href={storyShared.licenceRecordUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t.footer.licence}, ${t.ui.externalLink}`}>{t.footer.licence}</a></nav></div><div className="story-qualifications"><p>{t.footer.illustration}</p><p>{t.footer.eligibility}</p><p>{t.footer.concepts}</p><p>{t.footer.terrainNote}</p></div></footer>
   </div>;

@@ -31,7 +31,7 @@ export function OverviewDocument({ locale, origin }: { locale: Locale; origin: s
     <h2>{copy.grain.title}</h2><p>{copy.grain.body}</p><h3>{copy.grain.evidenceTitle}</h3><p>{copy.grain.evidenceBody}</p><p className="note">{copy.grain.note}</p>
     <h2>{copy.grain.structuresTitle}</h2>{copy.grain.structures.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}
     <h2>{copy.grain.more}</h2>{copy.grain.concepts.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}
-    <h2>{copy.company.title}</h2><p>{copy.company.body}</p><p>{copy.company.shareholderBody}</p><p>{t.footer.bin} {storyShared.bin} · <a href={storyShared.registerUrl}>{t.footer.register}</a></p><p><a href={storyShared.licenceRecordUrl}>{copy.company.licence}: AFSA-A-LA-2026-0014</a></p><p>{copy.company.recordNote}</p>
+    <h2>{copy.company.title}</h2><p>{copy.company.body}</p><h3>{copy.company.partnershipTitle}</h3><p>{copy.company.partnershipBody}</p><p>{copy.company.shareholderBody}</p><p>{t.footer.bin} {storyShared.bin} · <a href={storyShared.registerUrl}>{t.footer.register}</a></p><p><a href={storyShared.licenceRecordUrl}>{copy.company.licence}: AFSA-A-LA-2026-0014</a></p><p>{copy.company.recordNote}</p>
     <h2>{copy.enquiry.title}</h2><p>{copy.enquiry.nextBody}</p><p><a href={storyShared.emailHref}>{storyShared.email}</a></p>
     <footer><p>{t.footer.illustration}</p><p>{t.footer.eligibility}</p><p>{t.footer.concepts}</p><p>{t.footer.terrainNote}</p></footer>
   </main></body></html>;

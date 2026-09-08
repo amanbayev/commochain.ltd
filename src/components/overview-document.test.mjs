@@ -14,6 +14,8 @@ for (const locale of ['en', 'ru', 'kk']) {
     assert.ok(html.includes(`<html lang="${locale}">`));
     assert.ok(html.includes(escape(fieldToFinanceCopy[locale].headline)));
     assert.ok(html.includes(escape(fieldToFinanceCopy[locale].rights)));
+    assert.ok(html.includes(escape(overviewCopy[locale].company.partnershipTitle)));
+    assert.ok(html.includes(escape(overviewCopy[locale].company.partnershipBody)));
     for (const id of ['overview', 'infrastructure', 'assets', 'company', 'contact']) assert.ok(html.includes(`id="${id}"`));
     assert.match(html, /<fieldset[^>]+disabled=""/);
     assert.match(html, /<noscript><style>\.enquiry-form/);
@@ -27,6 +29,7 @@ for (const locale of ['en', 'ru', 'kk']) {
     assert.ok(html.includes(`<title>CommodityChain | ${overviewCopy[locale].nav.overview}</title>`));
     assert.ok(html.includes(escape(fieldToFinanceCopy[locale].risk)));
     assert.ok(html.includes(escape(overviewCopy[locale].overview.statusBody)));
+    assert.ok(html.includes(escape(overviewCopy[locale].company.partnershipBody)));
     assert.ok(html.includes('mailto:info@commochain.ltd'));
     assert.ok(!/<script|<link[^>]+stylesheet|<img|<video/i.test(html));
     assert.ok(!/pending approval|licence status:|license status:/i.test(html));

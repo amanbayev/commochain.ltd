@@ -3,6 +3,7 @@ import type { Locale } from '../i18n';
 import { overviewCopy } from '../content/overview-copy';
 import { experienceCopy } from '../content/experience-copy';
 import { nextAudienceIndex } from '../lib/experience-navigation';
+import { LinkArrow } from './brand-details';
 
 export function AudiencePaths({ locale, onContact }: { locale: Locale; onContact: (event: MouseEvent<HTMLAnchorElement>) => void }) {
   const copy = experienceCopy[locale].audience;
@@ -23,10 +24,10 @@ export function AudiencePaths({ locale, onContact }: { locale: Locale; onContact
         const next = nextAudienceIndex(event.key, index, copy.items.length, vertical);
         if (next === null) return;
         event.preventDefault(); setActive(next); tabs.current[next]?.focus();
-      }}><span aria-hidden="true">0{index + 1}</span>{item.label}<span className="audience-tab-arrow" aria-hidden="true">↗</span></button>)}
+      }}>{item.label}<span className="audience-tab-indicator" aria-hidden="true"/></button>)}
     </div>
     {copy.items.map((item, index) => <div className="audience-panel" id={`audience-panel-${index}`} role="tabpanel" aria-labelledby={`audience-tab-${index}`} tabIndex={0} hidden={active !== index} key={index}>
-      <div><h4>{audiences[index].title}</h4><p>{audiences[index].body}</p><a className="audience-cta" href="#contact" onClick={onContact}>{item.cta}<span aria-hidden="true">↗</span></a></div>
+      <div><h4>{audiences[index].title}</h4><p>{audiences[index].body}</p><a className="audience-cta" href="#contact" onClick={onContact}>{item.cta}<LinkArrow/></a></div>
       <div className="audience-checklist"><h5>{copy.prepare}</h5><ul>{item.checklist.map((text, row) => <li key={text}><span aria-hidden="true">0{row + 1}</span>{text}</li>)}</ul></div>
     </div>)}
     <noscript><style>{'.audience-tabs{display:none!important}.audience-panel[hidden]{display:grid!important}.audience-panel{border-bottom:1px solid #acb5a3}'}</style></noscript>
