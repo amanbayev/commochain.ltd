@@ -1,6 +1,7 @@
 import type { Locale } from '../i18n';
 
 type ExperienceCopy = {
+  reading: { definitionTitle: string; definitionBody: string; instrumentChecklist: string; comparisonDetails: string; journeyDetails: string; grainDetails: string };
   illustration: string; fieldCaption: string; grainCaption: string;
   architecture: { note: string; protocols: string[]; market: string[]; connection: string; foundation: string; roles: string[] };
   audience: { label: string; prepare: string; items: { label: string; checklist: string[]; cta: string }[] };
@@ -11,6 +12,12 @@ type ExperienceCopy = {
 
 export const experienceCopy = {
   en: {
+    reading: {
+      definitionTitle: 'What does tokenization mean here?',
+      definitionBody: 'A digital instrument connects asset evidence with documented rights. The instrument’s terms define what its holder can claim; a token does not automatically confer ownership of land or grain.',
+      instrumentChecklist: 'The four questions behind an instrument', comparisonDetails: 'Compare evidence and financing purpose',
+      journeyDetails: 'Who acts, and what is documented at each step', grainDetails: 'Stored grain: evidence, rights and responsibilities',
+    },
     illustration: 'AI-generated illustration', fieldCaption: 'A growing season. Not a specific financed field.', grainCaption: 'Grain storage. Not a CommodityChain facility.',
     architecture: {
       note: 'Platform model · not live activity',
@@ -35,6 +42,12 @@ export const experienceCopy = {
     jump: 'Jump to a section',
   },
   ru: {
+    reading: {
+      definitionTitle: 'Что здесь означает токенизация?',
+      definitionBody: 'Цифровой инструмент связывает данные об активе с документально закреплёнными правами. Условия инструмента определяют требования его держателя; токен не означает автоматического владения землёй или зерном.',
+      instrumentChecklist: 'Четыре вопроса об инструменте', comparisonDetails: 'Сравнить подтверждения и задачи финансирования',
+      journeyDetails: 'Кто участвует и что фиксируется на каждом этапе', grainDetails: 'Зерно на хранении: подтверждения, права и ответственность',
+    },
     illustration: 'Иллюстрация, созданная ИИ', fieldCaption: 'Сезон выращивания, не конкретное финансируемое поле.', grainCaption: 'Хранение зерна, не объект CommodityChain.',
     architecture: {
       note: 'Модель платформы · не текущие операции',
@@ -59,6 +72,12 @@ export const experienceCopy = {
     jump: 'Перейти к разделу',
   },
   kk: {
+    reading: {
+      definitionTitle: 'Мұнда токенизация нені білдіреді?',
+      definitionBody: 'Цифрлық құрал актив туралы деректерді құжатталған құқықтармен байланыстырады. Ұстаушының талап ету құқықтарын құрал шарттары анықтайды; токен жерге немесе астыққа автоматты түрде иелік етуді білдірмейді.',
+      instrumentChecklist: 'Құралға қатысты төрт сұрақ', comparisonDetails: 'Дәлелдер мен қаржыландыру мақсатын салыстыру',
+      journeyDetails: 'Әр кезеңде кім қатысады және не құжатталады', grainDetails: 'Сақтаудағы астық: дәлелдер, құқықтар және жауапкершілік',
+    },
     illustration: 'ЖИ жасаған иллюстрация', fieldCaption: 'Өсіру маусымы. Нақты қаржыландырылатын алқап емес.', grainCaption: 'Астық сақтау орны. CommodityChain нысаны емес.',
     architecture: {
       note: 'Платформа моделі · нақты уақыттағы операциялар емес',

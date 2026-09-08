@@ -30,7 +30,7 @@ for (const locale of ['en', 'ru', 'kk']) {
     }
     assert.equal((html.match(/class="journey-marker"/g) || []).length, 4);
     const images = [...html.matchAll(/<img[^>]*src="\/assets\/editorial\/[^>]+>/g)].map(match => match[0]);
-    assert.equal(images.length, 4);
+    assert.equal(images.length, 2, 'each editorial scene appears once, without repeated comparison crops');
     for (const image of images) {
       assert.ok(image.includes('loading="lazy"'));
       assert.ok(image.includes('decoding="async"'));

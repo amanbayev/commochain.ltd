@@ -7,6 +7,7 @@ import { EngineDiagram } from './engine-diagram';
 import { AudiencePaths } from './audience-paths';
 import { experienceCopy } from '../content/experience-copy';
 import { BrandMonogram, DisclosureMark, LinkArrow } from './brand-details';
+import { EditorialPhoto } from './editorial-photo';
 
 type Props = { locale: Locale; onGrain: (event: MouseEvent<HTMLAnchorElement>) => void; onContact: (event: MouseEvent<HTMLAnchorElement>) => void };
 
@@ -25,6 +26,7 @@ export function BusinessOverview({ locale, onGrain, onContact }: Props) {
         <p className="section-lead">{copy.overview.body}</p>
         <aside className="launch-note"><span className="status-dot" aria-hidden="true"/><h3>{copy.overview.status}</h3><p>{copy.overview.statusBody}</p></aside>
       </div>
+      <aside className="token-definition"><h3>{experience.reading.definitionTitle}</h3><p>{experience.reading.definitionBody}</p></aside>
       <div className="overview-audience-heading"><h3>{copy.overview.audienceTitle}</h3><div className="overview-download"><a href={`/downloads/commoditychain-overview-${locale}.html`} download={`commoditychain-overview-${locale}.html`}>{copy.download}<LinkArrow down/></a><span>{copy.downloadFormat}</span></div></div>
       <AudiencePaths locale={locale} onContact={onContact}/>
     </section>
@@ -32,16 +34,19 @@ export function BusinessOverview({ locale, onGrain, onContact }: Props) {
     <section id="infrastructure" className="overview-section overview-infrastructure" aria-labelledby="infrastructure-title">
       <div className="section-heading split-heading"><h2 id="infrastructure-title" tabIndex={-1}>{copy.process.title}</h2><p className="section-lead">{copy.process.body}</p></div>
       <EngineDiagram locale={locale}/>
-      <h3 className="process-title">{copy.process.stepsTitle}</h3>
+      <details className="supporting-detail infrastructure-detail"><summary>{experience.reading.instrumentChecklist}<DisclosureMark/></summary>
       <ol className="process-grid">{copy.process.steps.map((item, index) => <li key={item.title}><span className="step-number" aria-hidden="true">0{index + 1}</span><h4>{item.title}</h4><p>{item.body}</p></li>)}</ol>
+      </details>
     </section>
 
     <section id="assets" className="overview-section overview-grain" aria-labelledby="protocols-title">
       <FieldToFinance locale={locale}/>
-      <div className="grain-intro"><div className="section-heading"><h3 id="grain-title">{copy.grain.title}</h3><p className="section-lead">{copy.grain.body}</p><a className="text-link grain-film-link" href="#chapter-grain" onClick={onGrain}>{copy.grain.watch}<LinkArrow/></a></div><figure><img src="/assets/editorial/grain-storage.webp" srcSet="/assets/editorial/grain-storage-small.webp 800w, /assets/editorial/grain-storage.webp 1600w" sizes="(max-width: 767px) 100vw, 45vw" alt="" width="1600" height="900" loading="lazy" decoding="async"/><figcaption><span>{experience.illustration}</span>{experience.grainCaption}</figcaption></figure></div>
-      <dl className="grain-facts">{copy.grain.facts.map(item => <div key={item.title}><dt>{item.title}</dt><dd>{item.body}</dd></div>)}</dl>
+      <div className="grain-intro"><div className="section-heading"><h3 id="grain-title">{copy.grain.title}</h3><p className="section-lead">{copy.grain.body}</p><a className="text-link grain-film-link" href="#chapter-grain" onClick={onGrain}>{copy.grain.watch}<LinkArrow/></a></div><figure><EditorialPhoto subject="grain"/><figcaption><span>{experience.illustration}</span>{experience.grainCaption}</figcaption></figure></div>
       <p className="grain-note">{copy.grain.note}</p>
+      <details className="supporting-detail grain-detail"><summary>{experience.reading.grainDetails}<DisclosureMark/></summary>
+      <dl className="grain-facts">{copy.grain.facts.map(item => <div key={item.title}><dt>{item.title}</dt><dd>{item.body}</dd></div>)}</dl>
       <div className="storage-evidence"><h3>{copy.grain.evidenceTitle}</h3><p>{copy.grain.evidenceBody}</p></div>
+      </details>
       <details className="future-protocols"><summary>{copy.grain.structuresTitle}<DisclosureMark/></summary><div className="concept-grid">{copy.grain.structures.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}</div></details>
       <details className="future-protocols"><summary>{copy.grain.more}<DisclosureMark/></summary><div className="concept-grid">{copy.grain.concepts.map(item => <article key={item.title}><h3>{item.title}</h3><p className="concept-label">{t.ui.concept}</p><p>{item.body}</p></article>)}</div></details>
     </section>
