@@ -47,7 +47,7 @@ No secret environment variables or API keys are required.
 
 ```json
 {
-  "siteUrl": "https://commochain.ltd",
+  "siteUrl": "https://www.commochain.ltd",
   "allowIndexing": false
 }
 ```
@@ -74,7 +74,7 @@ For development, use `npm run dev`. Source HTML is not intended to be opened dir
 
 ## What is included
 
-- The existing V3 scroll-controlled film experience, adapted to standalone static hosting without changing its content or visual design.
+- The existing V3 film and scroll-video controller, with responsive cinematic controls and a complementary readable business overview.
 - Shared Kazakh, Russian and English dictionaries from the owner's supplied copy file.
 - The unchanged provisional Concept B logo, favicon, opening poster and self-hosted Noto fonts with their licences.
 - The actual eleven-caption timing data for the ten-clip, 50.042-second story.
@@ -90,8 +90,11 @@ An internet connection is required for the film. CDN availability is still an ex
 ## Where to edit
 
 - Visitor copy: `src/content/commochain-copy.kk-ru-en.json`
+- Business overview: `src/content/overview-copy.ts`
+- Field-to-Finance explanation: `src/content/field-to-finance-copy.ts`
 - Story component and interactions: `src/components/story-page.tsx`
 - Styling: `src/story.css`
+- Readable overview and enquiry styling: `src/overview.css`
 - Caption timing: `src/content/story-timing.json`
 - Film/poster locations: `src/content/story-media.json`
 - Site origin/indexing: `site.config.json`
@@ -105,8 +108,34 @@ This is a static website package, **not a GitHub Pages configuration**. GitHub P
 
 No platform-internal scaffolding, account credentials or original source videos are included. No new open-source licence is applied to the company code; font licences are included separately.
 
+## Launch-stage business overview
+
+The cinematic opening leads directly to a readable overview in all three languages. The launch protocols distinguish pre-harvest Field-to-Finance from stored-grain warehouse-receipt instruments. Independent verification, issuer obligations, exchange, clearing, registry and compliance responsibilities are explained separately. Future music, gaming and water-facility protocols remain labelled as development concepts.
+
+The company section links the company and AFSA licence records without displaying a licence-status claim. The existing footer qualifications, contact address, film, timing, iOS scrub controller and indexing gate are retained. Canonical URLs use the existing `www` production hostname; no DNS changes are involved.
+
+`npm run build` also generates `/downloads/commoditychain-overview-{en,ru,kk}.html`: self-contained, script-free documents for offline reading or printing. These reuse the localized source copy rather than republishing supplied PDFs. The download URLs are production-build assets, not Vite development routes.
+
+The enquiry form prepares a draft only. It sends no requests, stores no visitor data and requires the visitor to open their email app and send the message. Inputs stay disabled until hydration; without JavaScript, a direct email link replaces the form. No backend, new API, service integration or dependency was introduced.
+
+### Verify changes before a preview
+
+Use Node.js 22 and the existing npm lockfile:
+
+```sh
+npm ci
+npm run typecheck
+npm test
+npm run build
+npm run test:built
+```
+
+Pure-function/content tests live beside the code. `npm test` also runs the existing 11 deterministic scroll-video controller checks. Built-page tests check every locale, downloadable content, canonical URLs, noindex and the non-JavaScript form fallback. The repository has no configured lint script; do not report lint as passing.
+
+Review mobile portrait/landscape, chapter jumps and browser history, locale changes, text/failed-media fallback, disclosures and email draft preparation. A physical affected iPhone still needs to verify Safari video behavior. Human review of the Kazakh/Russian translations and instrument-specific legal wording remains a publication step. Use a feature-branch draft PR and Vercel preview; do not merge or deploy production without approval.
+
 ## Checks completed for this package
 
-The production build and TypeScript check passed. The built static pages were served locally without authentication and checked in Chromium: all three locale routes, hydration without page errors, actual CDN-film seeking forward/backward, language switching without resetting the video, narrow-mobile layout and reduced-motion fallback. The largest built asset is about 222 KB; the movie is excluded. Actual Vercel deployment, its access settings, custom-domain DNS and HTTPS activation must still be completed in your account.
+The business-overview revision passed TypeScript, the production build, seven content/navigation/enquiry tests, eleven simulated scroll-video controller tests and seven built-page/download tests. Local Chromium checks covered narrow portrait and short landscape layouts, language switching without resetting the video position, forward/backward seeking, section navigation, disclosures, keyboard menu dismissal, text/failed-media fallback and preparation/copying of an unsent enquiry. All three built locale routes and overview downloads returned HTTP 200. These checks do not certify physical iOS behavior. Production remains on the previously approved deployment until the new feature PR is reviewed and approved.
 
 References: [Vercel commercial-use policy](https://vercel.com/docs/limits/fair-use-guidelines), [Vercel domain setup](https://vercel.com/docs/domains/working-with-domains/add-a-domain), [Porkbun DNS guide](https://kb.porkbun.com/article/231-how-to-add-dns-records-on-porkbun).

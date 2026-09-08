@@ -25,12 +25,13 @@ img,svg{display:block}
 .story-track{height:calc(100svh + var(--story-travel));position:relative}
 .story-stage{position:sticky;top:0;height:100svh;min-height:570px;overflow:hidden;background:#080c11;isolation:isolate;--story-progress:0}
 .story-film,.story-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;pointer-events:none}
+.story-media{position:absolute;inset:0}
 .story-film{z-index:0}
 .story-poster{z-index:1}
 .story-poster.is-covered{opacity:0;pointer-events:none}
 .story-captions{position:absolute;z-index:3;top:clamp(112px,15vh,180px);left:6.8vw;width:min(520px,43vw)}
 .story-caption{position:relative;isolation:isolate}
-.story-caption:before{content:'';position:absolute;z-index:-1;inset:-38px -65px -48px -6.8vw;background:linear-gradient(90deg,#060b10cc 0%,#060b1094 78%,transparent 100%);pointer-events:none;border-radius:0}
+.story-caption:before{content:'';position:absolute;z-index:-1;inset:-70px -120px -85px -10vw;background:radial-gradient(ellipse at 25% 40%,#060b10df 0%,#060b1099 45%,transparent 74%);pointer-events:none}
 .story-eyebrow{display:flex;align-items:center;gap:20px;font-size:10px;line-height:1.7;letter-spacing:.025em;color:#e3dccb;margin-bottom:23px}
 .concept-marker{font-size:10px;font-weight:400;letter-spacing:.02em;color:#ddc991;border-left:1px solid #c8b17a;padding-left:10px}
 .story-caption h1,.story-caption h2{font-family:'CC Serif',serif;font-size:clamp(42px,4.3vw,66px);font-weight:400;line-height:1.12;letter-spacing:-.055em;text-wrap:balance;color:var(--paper)}
@@ -49,6 +50,7 @@ img,svg{display:block}
 .story-partnership{background:var(--paper);color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:28px;padding:16px 20px;min-height:52px;font-size:12px;font-weight:600;white-space:nowrap}
 .story-partnership:hover{background:#e6dcc2;text-decoration:none}
 .story-static-toggle{font-size:11px;min-height:44px;padding:10px 0;text-decoration:underline;text-underline-offset:5px;color:#e1e3d9}
+.story-contact-link{font-size:12px;text-decoration:underline;text-underline-offset:5px;line-height:1.6;padding:12px 0}
 .css-arrow{position:relative;display:inline-block;width:16px;height:16px;flex-shrink:0}
 .css-arrow:before{content:'';position:absolute;width:14px;height:1px;left:0;top:8px;transform:rotate(-45deg);background:currentColor}
 .css-arrow:after{content:'';position:absolute;top:2px;right:2px;width:8px;height:8px;border-top:1px solid currentColor;border-right:1px solid currentColor}
@@ -144,3 +146,74 @@ img,svg{display:block}
 .story-enable-motion:hover{background:#202720}
 @media(max-width:767px){.story-enable-motion{top:40%;font-size:11px}}
 @media(max-width:360px){.story-enable-motion{top:36%;left:19px}}
+
+/* Size the cinematic layout from available height; no fixed minimum phone height. */
+.story-header{background:linear-gradient(#080e12f2,#080e12d9 65%,#080e1299);gap:24px}
+.story-main-nav{gap:22px}
+.story-main-nav a{font-size:12px}
+.story-bottom{align-items:center;bottom:24px}
+.story-bottom .story-static-toggle{padding:6px 0;min-height:36px;font-size:11px}
+.chapter-arrow{width:44px;height:44px}
+.chapter-arrow:before{top:20px;left:14px}.chapter-arrow:after{top:16px;left:15px}
+.story-rail{height:24px}
+.story-qualifications p{font-size:11px;line-height:1.85}
+@media(min-width:768px) and (max-width:1200px){
+ .story-header{grid-template-columns:auto 1fr auto}.story-main-nav{display:none}.story-languages{justify-content:center}
+ .story-mobile-menu{display:block;font-size:12px;min-height:44px;padding:8px 0}
+ .story-menu{display:flex;position:absolute;top:85px;left:4vw;right:4vw;flex-direction:column;gap:0;padding:12px 25px;background:#101b18;border:1px solid #4a5945;font-size:14px}
+ .story-menu a{padding:13px 0}
+}
+@media(max-width:767px), (max-width:950px) and (max-height:500px){
+ .story-header{min-height:96px;padding:10px 22px 4px;gap:0 12px;background:#080c11f5}
+ .story-brand{width:min(210px,57vw)}.story-languages{gap:24px;font-size:12px}.story-languages a{min-height:38px}
+ .story-mobile-menu{font-size:12px;max-width:105px;line-height:1.4}
+ .story-menu{top:96px;font-size:15px;max-height:calc(100svh - 120px);overflow-y:auto}
+ .story-stage{height:100svh;min-height:0;display:grid;grid-template-rows:minmax(55px,1fr) auto auto auto 24px;padding-top:100px}
+ .story-media{position:relative;inset:auto;min-height:0;grid-row:1;overflow:hidden}
+ .story-film,.story-poster{object-fit:contain;object-position:center}
+ .story-captions{position:relative;top:auto;left:auto;width:auto;grid-row:2;padding:16px 22px 12px;min-height:0;max-height:48svh;overflow-y:auto;overscroll-behavior:contain}
+ .story-caption:before{display:none}
+ .story-eyebrow{margin-bottom:10px;font-size:10px;line-height:1.5}
+ .story-caption h1,.story-caption h2,.story-shell[data-locale='kk'] .story-caption h1,.story-shell[data-locale='kk'] .story-caption h2,.story-shell[data-locale='ru'] .story-caption h1,.story-shell[data-locale='ru'] .story-caption h2{font-size:30px;line-height:1.17;letter-spacing:-.035em}
+ .story-caption p{font-size:13px;line-height:1.6;margin-top:12px;color:#d5ddcf}
+ .story-controls{position:relative;inset:auto;grid-row:3;margin:4px 22px 0;grid-template-columns:1fr auto;gap:8px 14px}
+ .story-partnership{grid-column:1/-1;grid-row:1;min-height:44px;font-size:13px;padding:12px 16px}
+ .story-control-left{grid-row:2;gap:6px}.story-counter{font-size:10px;min-width:78px}
+ .chapter-arrow{width:44px;height:44px}.chapter-arrow:before{top:20px;left:14px}.chapter-arrow:after{top:16px;left:15px}
+ .story-contact-link{grid-row:2;max-width:148px;font-size:11px;line-height:1.5;min-height:44px;display:flex;align-items:center;text-align:right;padding:4px 0}
+ .story-bottom{position:relative;inset:auto;grid-row:4;margin:0 22px;gap:14px;font-size:10px;line-height:1.5;min-height:38px}
+ .story-bottom:before{display:none}.story-scroll-cue{max-width:65%}
+ .story-bottom .story-static-toggle{font-size:10px;line-height:1.5;min-height:38px;padding:6px 0;max-width:40%}
+ .story-rail{position:relative;inset:auto;grid-row:5;height:auto;min-height:24px;padding:0 0 env(safe-area-inset-bottom,0px);gap:2px}
+ .story-loading,.story-enable-motion{left:22px;top:50%;bottom:auto;transform:translateY(-50%);font-size:12px;max-width:calc(100% - 44px)}
+ .story-enable-motion{min-height:44px;padding:10px 15px;background:#0b0f14}
+ .story-qualifications p{font-size:11px}
+}
+@media(max-width:767px) and (max-height:700px), (max-width:950px) and (max-height:500px){
+ .story-stage{padding-top:96px;grid-template-rows:minmax(48px,1fr) auto auto auto 24px}
+ .story-captions{padding-top:10px;padding-bottom:8px;max-height:43svh}
+ .story-caption h1,.story-caption h2,.story-shell[data-locale='kk'] .story-caption h1,.story-shell[data-locale='kk'] .story-caption h2,.story-shell[data-locale='ru'] .story-caption h1,.story-shell[data-locale='ru'] .story-caption h2{font-size:26px;line-height:1.15}
+ .story-eyebrow{font-size:9px;margin-bottom:8px}
+ .story-caption p{font-size:12px;line-height:1.55;margin-top:9px}
+ .story-controls{margin-top:2px;gap:5px 10px}.story-bottom{min-height:32px}
+ .story-bottom .story-static-toggle{min-height:32px}
+}
+@media(max-width:950px) and (max-height:500px){
+ .story-stage{grid-template-columns:38% 62%;grid-template-rows:minmax(0,1fr) auto auto 24px}
+ .story-media{grid-column:1;grid-row:1}.story-captions{grid-column:2;grid-row:1;max-height:none;padding-left:12px}
+ .story-controls{grid-column:1/-1;grid-row:2;grid-template-columns:1fr auto auto;align-items:center}
+ .story-partnership{grid-column:2;grid-row:1}.story-control-left{grid-column:1;grid-row:1}.story-contact-link{grid-column:3;grid-row:1}
+ .story-bottom{grid-column:1/-1;grid-row:3}.story-rail{grid-column:1/-1;grid-row:4}
+}
+
+/* Readable copy and controls, including the phone home-indicator inset. */
+.story-caption p{font-size:16px}
+.story-main-nav a,.story-languages,.story-mobile-menu{font-size:14px}
+.story-qualifications p{font-size:12px}
+@media(max-width:767px), (max-width:950px) and (max-height:500px){
+ .story-stage{padding-bottom:env(safe-area-inset-bottom,0px)}
+ .story-rail{padding-bottom:0}
+ .story-eyebrow,.concept-marker,.story-counter,.story-contact-link,.story-bottom,.story-bottom .story-static-toggle{font-size:12px}
+ .story-languages{gap:22px}.story-controls{column-gap:10px}
+ .story-counter{min-width:76px}.story-contact-link{max-width:135px}
+}
