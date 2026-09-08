@@ -1,0 +1,236 @@
+{
+  "results": [
+    {
+      "name": "narrow-en",
+      "status": "pass",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 973.21875,
+      "assetsTop": 1443.296875,
+      "headingOverflow": []
+    },
+    {
+      "name": "narrow-ru",
+      "status": "pass",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 1107.53125,
+      "assetsTop": 1624.390625,
+      "headingOverflow": []
+    },
+    {
+      "name": "narrow-kk",
+      "status": "pass",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 1203.109375,
+      "assetsTop": 1696.578125,
+      "headingOverflow": []
+    },
+    {
+      "name": "mobile-en",
+      "status": "pass",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 937.484375,
+      "assetsTop": 1384.171875,
+      "headingOverflow": []
+    },
+    {
+      "name": "mobile-ru",
+      "status": "pass",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 1028.109375,
+      "assetsTop": 1498.1875,
+      "headingOverflow": []
+    },
+    {
+      "name": "mobile-kk",
+      "status": "pass",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 1100.59375,
+      "assetsTop": 1570.671875,
+      "headingOverflow": []
+    },
+    {
+      "name": "tablet-en",
+      "status": "pass",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 705.4375,
+      "assetsTop": 1019.5625,
+      "headingOverflow": []
+    },
+    {
+      "name": "tablet-ru",
+      "status": "pass",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 802.03125,
+      "assetsTop": 1139.546875,
+      "headingOverflow": []
+    },
+    {
+      "name": "tablet-kk",
+      "status": "pass",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 904.015625,
+      "assetsTop": 1241.53125,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop-en",
+      "status": "pass",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 760.71875,
+      "assetsTop": 938.28125,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop-ru",
+      "status": "pass",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 760.71875,
+      "assetsTop": 961.671875,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop-kk",
+      "status": "pass",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 847.875,
+      "assetsTop": 1033.4375,
+      "headingOverflow": []
+    },
+    {
+      "name": "landscape-en",
+      "status": "pass",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 579.046875,
+      "assetsTop": 893.171875,
+      "headingOverflow": []
+    },
+    {
+      "name": "landscape-ru",
+      "status": "pass",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 772.03125,
+      "assetsTop": 1109.546875,
+      "headingOverflow": []
+    },
+    {
+      "name": "landscape-kk",
+      "status": "pass",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "videoCount": 0,
+      "heroTop": 0,
+      "credibilityTop": 850.921875,
+      "assetsTop": 1165.046875,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop evidence and governance screenshots",
+      "status": "pass"
+    },
+    {
+      "name": "audience context and validation",
+      "status": "pass"
+    },
+    {
+      "name": "optional story entry, seeking, locale and focus restoration",
+      "status": "pass",
+      "forward": "5.0925",
+      "backward": "0.0000",
+      "media": {
+        "time": 0.016081,
+        "readyState": 4,
+        "paused": false,
+        "scrubState": "loading"
+      }
+    },
+    {
+      "name": "failed media falls back to text and exits",
+      "status": "pass"
+    },
+    {
+      "name": "reduced motion starts static and preserves the homepage",
+      "status": "pass"
+    },
+    {
+      "name": "mobile menu keyboard dismissal and short-landscape navigation",
+      "status": "pass"
+    },
+    {
+      "name": "no-JavaScript reading and native evidence disclosures",
+      "status": "pass"
+    },
+    {
+      "name": "mock online acceptance, duplicate prevention, provider failure and recovery",
+      "status": "pass",
+      "mockedRequests": 3
+    },
+    {
+      "name": "no unexpected browser errors",
+      "status": "pass",
+      "errors": 0
+    }
+  ],
+  "issues": [],
+  "webkit": {
+    "available": false,
+    "tested": false
+  },
+  "physicalIPhone": false
+}

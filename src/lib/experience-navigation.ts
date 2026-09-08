@@ -1,4 +1,4 @@
-export const sectionKeys = ['overview', 'infrastructure', 'assets', 'company', 'contact'] as const;
+export const sectionKeys = ['overview', 'assets', 'verification', 'infrastructure', 'participation', 'company', 'faq', 'contact', 'deeper'] as const;
 export type SectionKey = typeof sectionKeys[number];
 
 /** Standard tab keyboard behavior. No activation for unrelated keys. */

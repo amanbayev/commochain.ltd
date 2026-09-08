@@ -1,4 +1,5 @@
 import type { Locale } from '../i18n';
+import { publicSiteCopy } from './public-site-copy.ts';
 
 type Item = { title: string; body: string };
 type OverviewCopy = {
@@ -11,7 +12,7 @@ type OverviewCopy = {
   enquiry: { title: string; body: string; name: string; email: string; organisation: string; project: string; placeholder: string; submit: string; notice: string; prepared: string; copy: string; copied: string; copyFailed: string; draft: string; nextTitle: string; nextBody: string };
 };
 
-export const overviewCopy = {
+const baseOverviewCopy = {
   en: {
     nav: { overview: 'Overview', infrastructure: 'How it works', assets: 'Launch protocols', company: 'Company', contact: 'Contact' },
     hero: 'Built on verified agricultural data. Field-to-Finance and stored-grain protocols. At launch stage.',
@@ -238,3 +239,14 @@ export const overviewCopy = {
     },
   },
 } satisfies Record<Locale, OverviewCopy>;
+
+// Shared current facts feed the homepage, optional story and printable overview.
+export const overviewCopy = Object.fromEntries(Object.entries(baseOverviewCopy).map(([key, value]) => {
+  const current = publicSiteCopy[key as Locale];
+  return [key, { ...value, hero: current.intro,
+    overview: { ...value.overview, body: current.intro, status: current.stage, statusBody: current.stageBody },
+    company: { ...value.company, title: current.company, body: current.stageBody,
+      shareholderBody: current.shareholderBody, partnershipTitle: current.partnershipTitle,
+      partnershipBody: current.shareholderBody, licence: current.licenceLabel, recordNote: current.scope },
+  }];
+})) as Record<Locale, OverviewCopy>;

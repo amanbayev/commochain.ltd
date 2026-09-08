@@ -9,6 +9,11 @@ const server = createServer(async (request, response) => {
   try {
     const url = new URL(request.url || '/', 'http://localhost');
     const pathname = decodeURIComponent(url.pathname);
+    // Static local preview never sends email. The real boundary is verified with injected adapters.
+    if (pathname === '/api/enquiry') {
+      response.writeHead(request.method === 'GET' ? 200 : 503, { 'Content-Type':'application/json', 'Cache-Control':'no-store' });
+      response.end(JSON.stringify(request.method === 'GET' ? {available:false} : {error:'not_configured'})); return;
+    }
     if (pathname === '/') { response.writeHead(307, { Location:'/kk' }); response.end(); return; }
     if (['/kk/','/ru/','/en/'].includes(pathname)) { response.writeHead(308, { Location:pathname.slice(0,-1) }); response.end(); return; }
     let filename = resolve(root, '.' + pathname);

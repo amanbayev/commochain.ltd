@@ -54,8 +54,8 @@
       "languageName": "Қазақша",
       "htmlLang": "kk",
       "metadata": {
-        "title": "CommodityChain | Егістіктен — қаржыландыруға",
-        "description": "Шикізат активтерін токенизациялау, нарық инфрақұрылымы және ықтимал даму бағыттары туралы көрнекі оқиға."
+        "title": "CommodityChain | Нақты активтерді капиталмен байланыстырамыз",
+        "description": "AFSA лицензиясы бар нарық инфрақұрылымы. Егін жинауға дейінгі қаржыландыру, сақтаудағы астық және активтерді тексеру. Кезең-кезеңімен іске қосу."
       },
       "navigation": {
         "story": "Оқиға",
@@ -157,8 +157,8 @@
       "languageName": "Русский",
       "htmlLang": "ru",
       "metadata": {
-        "title": "CommodityChain | От поля — к финансированию",
-        "description": "История токенизации сырьевых активов, рыночной инфраструктуры и возможных направлений развития."
+        "title": "CommodityChain | Соединяем реальные активы с капиталом",
+        "description": "Рыночная инфраструктура с лицензией AFSA. Финансирование до урожая, зерно на хранении и проверка активов. Поэтапный запуск."
       },
       "navigation": {
         "story": "История",
@@ -260,8 +260,8 @@
       "languageName": "English",
       "htmlLang": "en",
       "metadata": {
-        "title": "CommodityChain | From the field to finance",
-        "description": "Explore a visual journey through commodity tokenization, market infrastructure and a wider world of asset concepts."
+        "title": "CommodityChain | Connecting real assets to capital",
+        "description": "AFSA-licensed market infrastructure for agricultural financing, grain in storage and asset verification. Controlled launch."
       },
       "navigation": {
         "story": "Story",

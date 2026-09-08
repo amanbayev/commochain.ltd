@@ -3,6 +3,7 @@ import { overviewCopy } from '../content/overview-copy';
 import { fieldToFinanceCopy } from '../content/field-to-finance-copy';
 import { storyCopy, storyShared } from '../story-i18n';
 import { experienceCopy } from '../content/experience-copy';
+import { publicSiteCopy, companyFacts } from '../content/public-site-copy';
 
 // A self-contained reading/printing download. No scripts, external fonts or images.
 const documentStyle = `
@@ -21,20 +22,25 @@ export function OverviewDocument({ locale, origin }: { locale: Locale; origin: s
   const copy = overviewCopy[locale];
   const field = fieldToFinanceCopy[locale];
   const t = storyCopy[locale];
+  const p = publicSiteCopy[locale];
   return <html lang={locale}><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex, nofollow"/><title>{`${storyShared.brand} | ${copy.nav.overview}`}</title><style>{documentStyle}</style></head><body><main>
-    <header><a href={`${origin}/${locale}`}>{storyShared.brand}</a><h1>{field.headline}</h1><p>{copy.hero}</p></header>
-    <p>{copy.overview.body}</p><aside><h3>{copy.overview.status}</h3><p>{copy.overview.statusBody}</p></aside>
+    <header><a href={`${origin}/${locale}`}>{storyShared.brand}</a><h1>{p.hero}</h1><p>{p.intro}</p></header>
+    <aside><h3>{copy.overview.status}</h3><p>{copy.overview.statusBody}</p></aside>
     <h3>{experienceCopy[locale].reading.definitionTitle}</h3><p>{experienceCopy[locale].reading.definitionBody}</p>
-    <h2>{copy.process.title}</h2><p>{copy.process.body}</p><div className="grid">{copy.process.engines.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
+    <p>{p.shareholderShort}</p><p>{p.permissions}</p>
     <h2>{field.title}</h2><p>{field.body}</p><h3>{field.comparisonTitle}</h3><div className="grid">{field.comparison.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
+    <h2>{p.verification}</h2><p>{p.verificationIntro}</p><p>{p.methodology}</p><ol>{p.evidence.map(item=><li key={item.title}><h3>{item.title}</h3><p>{item.body}</p></li>)}</ol><h3>{p.storageTitle}</h3><p>{p.storageBody}</p><h3>{p.solanaTitle}</h3><p>{p.solanaBody}</p>
     <h2>{field.journeyTitle}</h2><ol>{field.journey.map(item => <li key={item.title}><h3>{item.title}</h3><p>{item.body}</p></li>)}</ol>
     <aside><h3>{field.rightsTitle}</h3><p>{field.rights}</p><p className="note">{field.risk}</p></aside>
     <h2>{field.rolesTitle}</h2><div className="grid">{field.roles.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
     <h2>{copy.grain.title}</h2><p>{copy.grain.body}</p><h3>{copy.grain.evidenceTitle}</h3><p>{copy.grain.evidenceBody}</p><p className="note">{copy.grain.note}</p>
     <h2>{copy.grain.structuresTitle}</h2>{copy.grain.structures.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}
-    <h2>{copy.grain.more}</h2>{copy.grain.concepts.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}
-    <h2>{copy.company.title}</h2><p>{copy.company.body}</p><h3>{copy.company.partnershipTitle}</h3><p>{copy.company.partnershipBody}</p><p>{copy.company.shareholderBody}</p><p>{t.footer.bin} {storyShared.bin} · <a href={storyShared.registerUrl}>{t.footer.register}</a></p><p><a href={storyShared.licenceRecordUrl}>{copy.company.licence}: AFSA-A-LA-2026-0014</a></p><p>{copy.company.recordNote}</p>
+    <h2>{copy.company.title}</h2><p>{copy.company.body}</p><h3>{copy.company.partnershipTitle}</h3><p>{copy.company.shareholderBody}</p><p>{t.footer.bin} {storyShared.bin} · <a href={storyShared.registerUrl}>{t.footer.register}</a></p><p><a href={storyShared.licenceRecordUrl}>{copy.company.licence}: {companyFacts.licence}</a></p><p>{copy.company.recordNote}</p>
+    <p>{p.partnershipNote}</p><dl><dt>{p.institution}</dt><dd lang="en">{companyFacts.institution}</dd><dt>{p.issued}</dt><dd><time dateTime={companyFacts.issued}>{companyFacts.issued}</time></dd><dt>{p.expires}</dt><dd><time dateTime={companyFacts.expires}>{companyFacts.expires}</time></dd></dl><p>{p.certificateNote}</p>
+    <h2>{p.faq}</h2>{p.questions.map(item=><article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}
     <h2>{copy.enquiry.title}</h2><p>{copy.enquiry.nextBody}</p><p><a href={storyShared.emailHref}>{storyShared.email}</a></p>
+    <h2>{copy.process.title}</h2><p>{copy.process.body}</p><div className="grid">{copy.process.engines.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
+    <h2>{p.future}</h2><p>{p.futureNote}</p>{copy.grain.concepts.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}
     <footer><p>{t.footer.illustration}</p><p>{t.footer.eligibility}</p><p>{t.footer.concepts}</p><p>{t.footer.terrainNote}</p></footer>
   </main></body></html>;
 }
