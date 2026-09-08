@@ -138,3 +138,9 @@ img,svg{display:block}
  .story-bottom{bottom:calc(24px + env(safe-area-inset-bottom,0px))}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Recovery control reuses the existing localized loading position. */
+.story-enable-motion{min-height:44px;max-width:calc(100% - 46px);border:1px solid var(--gold);font-size:12px;line-height:1.4;padding:10px 15px;background:var(--ink);color:var(--paper);text-align:left;pointer-events:auto}
+.story-enable-motion:hover{background:#202720}
+@media(max-width:767px){.story-enable-motion{top:40%;font-size:11px}}
+@media(max-width:360px){.story-enable-motion{top:36%;left:19px}}

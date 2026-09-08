@@ -3,9 +3,15 @@ import { type Locale, isLocale } from '../i18n';
 import { storyCopy, storyShared, storyLocaleOrder, type SceneKey } from '../story-i18n';
 import timing from '../content/story-timing.json';
 import localMedia from '../content/story-media.json';
+import { createScrollVideo } from '../lib/scroll-video';
 
 const duration = timing.duration_seconds;
 const chapters = timing.captions;
+const enableMotion: Record<Locale, string> = {
+  kk: 'Анимацияны қосу',
+  ru: 'Включить анимацию',
+  en: 'Enable animation',
+};
 const clamp = (value:number) => Math.max(0, Math.min(1, value));
 const chapterAt = (time:number) => Math.max(0, chapters.findIndex((c,i) => time >= c.start && (time < c.end || i === chapters.length-1)));
 
@@ -18,6 +24,8 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
   const [manualStatic, setManualStatic] = useState<boolean|null>(null);
   const [failed, setFailed] = useState(false);
   const [ready, setReady] = useState(false);
+  const [needsGesture, setNeedsGesture] = useState(false);
+  const activateVideoRef = useRef<()=>void>(()=>{});
   const [menu, setMenu] = useState(false);
   const [testFail, setTestFail] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -67,13 +75,19 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
       travel = Math.max(1, track.offsetHeight - stage.offsetHeight);
       lastWidth = window.innerWidth; lastHeight = window.innerHeight;
     };
-    const seek = () => {
-      if (dead || video.readyState < 1 || video.seeking) return;
-      const end = Math.max(0, (video.duration || duration) - 1 / timing.fps);
-      const next = Math.min(target, end);
-      if (Math.abs(video.currentTime - next) > 1 / (timing.fps * 2)) video.currentTime = next;
-      if (!video.paused) video.pause();
+    setReady(false); setNeedsGesture(false);
+    const scrubber = createScrollVideo(video, timing.fps, status => {
+      if (status === 'ready') setReady(true);
+      setNeedsGesture(status === 'needs-gesture');
+    });
+    activateVideoRef.current = () => scrubber.activate(true, true);
+    const onGesture = () => scrubber.activate(true);
+    const onKey = (event:KeyboardEvent) => {
+      if (event.key === 'Enter' || event.key === ' ') onGesture();
     };
+    document.addEventListener('pointerup', onGesture, { passive:true });
+    document.addEventListener('touchend', onGesture, { passive:true });
+    document.addEventListener('keydown', onKey);
     const apply = (value:number) => {
       const p = clamp(value); progressRef.current = p; target = p * duration;
       const index = chapterAt(target); activeRef.current = index;
@@ -100,14 +114,9 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
       }
       if (counterRef.current) counterRef.current.textContent = `${storyCopy[localeRef.current].ui.chapter} ${String(index+1).padStart(2,'0')} / ${chapters.length}`;
       if (index !== lastChapter) { lastChapter=index; stage.dataset.activeCaption=String(index); }
-      seek();
+      scrubber.setTarget(target);
     };
     applyRef.current = apply;
-    const onSeeked = () => seek();
-    const onData = () => { video.pause(); setReady(true); seek(); };
-    video.addEventListener('seeked', onSeeked);
-    video.addEventListener('loadeddata', onData);
-    video.addEventListener('loadedmetadata', seek);
     const frame = () => {
       if (dead) return;
       if (window.innerWidth!==lastWidth || window.innerHeight!==lastHeight) { dimensions(); lastScroll=-1; }
@@ -116,10 +125,12 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
       raf=requestAnimationFrame(frame);
     };
     dimensions(); apply((window.scrollY-top)/travel); raf=requestAnimationFrame(frame);
-    if (video.readyState>=2) onData();
     return () => {
-      dead=true; cancelAnimationFrame(raf); video.pause();
-      video.removeEventListener('seeked',onSeeked); video.removeEventListener('loadeddata',onData); video.removeEventListener('loadedmetadata',seek);
+      dead=true; cancelAnimationFrame(raf); scrubber.dispose();
+      document.removeEventListener('pointerup',onGesture);
+      document.removeEventListener('touchend',onGesture);
+      document.removeEventListener('keydown',onKey);
+      activateVideoRef.current=()=>{};
       applyRef.current=()=>{};
     };
   }, [mounted, staticMode, testFail, media.video]);
@@ -179,7 +190,8 @@ export function StoryPage({ initialLocale='kk', offline=false, assets={}, media=
               <p>{text.body}</p>
             </article>;
           })}</div>
-          {!ready&&<span className="story-loading" role="status">{t.ui.loading}</span>}
+          {!ready&&!needsGesture&&<span className="story-loading" role="status">{t.ui.loading}</span>}
+          {needsGesture&&<button type="button" className="story-loading story-enable-motion" onClick={()=>activateVideoRef.current()}>{enableMotion[locale]}</button>}
           <div className="story-controls"><div className="story-control-left"><span ref={counterRef} className="story-counter">{`${t.ui.chapter} ${String(activeRef.current+1).padStart(2,'0')} / ${chapters.length}`}</span><button onClick={()=>jump(chapters[Math.max(0,activeRef.current-1)].start+.05)} aria-label={t.ui.previous} className="chapter-arrow prev"/><button onClick={()=>jump(chapters[Math.min(chapters.length-1,activeRef.current+1)].start+.05)} aria-label={t.ui.next} className="chapter-arrow next"/></div><a href="#contact" className="story-partnership" onClick={contact}>{t.ui.emailCta}<span className="css-arrow" aria-hidden="true"/></a><button className="story-static-toggle" onClick={toggleStatic}>{t.ui.staticView}</button></div>
           <div className="story-bottom"><span className="story-scroll-cue" title={t.ui.scrollExplanation}>{t.ui.scroll}</span><a href="#contact" onClick={contact}>{t.ui.skipStory}</a></div>
           <nav className="story-rail" aria-label={t.ui.chapter}>{chapters.map((c,index)=><button key={c.key} ref={node=>{railRefs.current[index]=node;}} style={{flexGrow:c.end-c.start}} aria-label={`${t.ui.chapter} ${index+1}: ${t.scenes[c.key as SceneKey].headline}`} title={t.scenes[c.key as SceneKey].headline} aria-current={index===activeRef.current?'step':undefined} onClick={()=>jump(c.start+.05)}><span/></button>)}</nav>
