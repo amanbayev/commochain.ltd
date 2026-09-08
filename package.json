@@ -8,7 +8,7 @@
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test src/lib/*.test.mjs src/content/*.test.mjs && node scripts/check-scroll-video.mjs",
-    "test:built": "node --experimental-strip-types --test src/components/*.test.mjs",
+    "test:built": "node --experimental-strip-types --test src/components/*.test.mjs scripts/serve.test.mjs",
     "build": "npm run typecheck && node scripts/build.mjs",
     "preview": "node scripts/serve.mjs"
   },

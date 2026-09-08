@@ -134,7 +134,17 @@ Pure-function/content tests live beside the code. `npm test` also runs the exist
 
 Review mobile portrait/landscape, chapter jumps and browser history, locale changes, text/failed-media fallback, disclosures and email draft preparation. A physical affected iPhone still needs to verify Safari video behavior. Human review of the Kazakh/Russian translations and instrument-specific legal wording remains a publication step. Use a feature-branch draft PR and Vercel preview; do not merge or deploy production without approval.
 
-## Checks completed for this package
+## Editorial experience revision
+
+The overview now includes localized audience tabs with contextual enquiry links, a two-engine architecture diagram, an image-led protocol comparison and a connected four-step lifecycle with responsibility and evidence labels. Navigation highlights the section crossing the reading line. The existing mobile section menu retains its keyboard dismissal and now highlights the current section.
+
+Two AI-generated agricultural illustrations are served locally in responsive, lazy-loaded WebP sizes. They are labelled as illustrations, not company facilities or financed fields. Exact prompts and asset provenance are in [docs/editorial-assets.md](docs/editorial-assets.md). No extra video, UI library or application dependency was added; the npm lockfile is unchanged.
+
+Audience tabs support arrow keys (left/right on desktop, up/down in the mobile layout), Home and End. Their content is available without JavaScript. The lifecycle remains a linear document on mobile, and reduced-motion preferences disable the diagram's decorative connections. All launch-stage wording, risk qualifications, three languages, contacts, source film/controller, indexing and deployment configuration are retained.
+
+This revision passed 10 pure-function/content tests, 11 simulated scroll-video controller checks and 15 built-page/download/asset/preview-server checks (36 total), plus TypeScript and the production build using Node.js 22. `pnpm lint` was attempted but the repository has no lint script. Fresh browser/device interaction and visual checks were not performed for this revision; the previous revision's browser checks below do not certify the new layout. An affected physical iPhone and human translation/legal review remain publication checks.
+
+## Checks completed for the preceding business-overview revision
 
 The business-overview revision passed TypeScript, the production build, seven content/navigation/enquiry tests, eleven simulated scroll-video controller tests and seven built-page/download tests. Local Chromium checks covered narrow portrait and short landscape layouts, language switching without resetting the video position, forward/backward seeking, section navigation, disclosures, keyboard menu dismissal, text/failed-media fallback and preparation/copying of an unsent enquiry. All three built locale routes and overview downloads returned HTTP 200. These checks do not certify physical iOS behavior. Production remains on the previously approved deployment until the new feature PR is reviewed and approved.
 
