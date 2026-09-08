@@ -16,6 +16,7 @@ Prepared 9 September 2026 for the marketing-site clarity preview. This is an imp
 | NDVI greenness/seasonal indicator; scoring as assessment input | Express boundaries in current brief | No yield guarantee, official credit rating, continuous/live monitoring, accuracy or risk-reduction percentage |
 | Separate underlying evidence, supplier/assessor and blockchain record | Current brief | No invented on-chain storage design, network, transaction, farmer file or hash implementation |
 | Stored-grain evidence includes receipts, quantity/quality and custody records | Current brief and incumbent explanation | Satellite observation does not replace storage evidence |
+| Elevator verification uses smart sensors/measurement systems: cameras, scales, laboratory testing and robots inside silos for grain quantity/quality | Owner's follow-up correction accompanying techhub logo.png | Company-described methodology; no invented installed-site list, continuous monitoring, accuracy, supplier or certified measurement claim. Complements receipts and custody evidence |
 | Water, music and gaming directions | Owner statements and incumbent copy | Moved below contact into future directions; not offered as currently available investments |
 
 ## Public-register discrepancy for owner review

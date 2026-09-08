@@ -2,11 +2,13 @@
 
 React 19, TypeScript, Vite 7 and Node.js 22; statically generated Kazakh, Russian and English pages on the existing Vercel project. This is the marketing website, not the separate trading application.
 
-## Current review: clarity and verification
+## Current review: cinematic opening, verification and finishing details
 
-The default route explains the business immediately: hero, licence/stage/strategic shareholder, two agricultural applications, verification methodology, lifecycle, participation, governance, FAQ and enquiry. Architecture, future concepts and the complete story transcript are optional deeper reading.
+At the owner's request, the original eleven-chapter scroll film opens the page again. The readable business overview follows it in normal document flow: licence/stage/strategic shareholder, two agricultural applications, verification, lifecycle, participation, governance, FAQ and enquiry. Visitors can still jump directly to the overview or contact. Architecture, future concepts and the full transcript remain optional deeper reading.
 
-The original eleven-chapter film is opt-in. Its source, timing and scroll controller are unchanged. The homepage mounts no video and does not request the film until the visitor opens the story. Reduced-motion, failed-media and no-JavaScript paths remain readable.
+One video mounts after hydration in cinematic mode, using the unchanged source, timing and scroll controller. There is no separate story modal or duplicate player. Reduced-motion, failed-media and no-JavaScript paths remain readable. The supplied TechHub logo now has a transparent background, and the lower disclosures/footer regain their shared gutters and content spacing.
+
+The owner clarified that stored-grain verification uses smart sensors and measurement systems: cameras, scales, laboratory testing and robots inside silos for quantity/quality measurements. This information is shared across all three languages and printable overviews, alongside separate warehouse-document and custody evidence. See [this revision's screenshots and checks](docs/film-return-review.md); the earlier optional-film layout is superseded.
 
 Current facts and qualifications come from the supplied licence certificate and the owner's implementation brief. See [claim sources and unresolved reviews](docs/public-claims.md). The supplied certificate and private supporting documents are not published.
 
@@ -31,7 +33,7 @@ Open http://127.0.0.1:4173/en (also /ru and /kk). The local static preview inten
 
 Tests live beside their code. There is no lint script. Parent AGENTS.md also requires pnpm lint/typecheck/test/build; use the installed pnpm runtime to attempt these scripts, without installing dependencies through pnpm or replacing package-lock.json.
 
-The optional browser review harness uses an externally installed Playwright package and Chrome, not a project dependency. Instructions, screenshots and measured results are in [the review report](docs/public-site-review.md). Physical affected-iPhone testing, native-language review and legal review remain separate.
+The optional browser review harness uses an externally installed Playwright package and Chrome, not a project dependency. Current screenshots and measured results are in [the review report](docs/film-return-review.md); [the earlier report](docs/public-site-review.md) is historical. Physical affected-iPhone testing, native-language review and legal review remain separate.
 
 ## Content and implementation
 
@@ -56,7 +58,7 @@ Keep the existing Vercel Git integration and Node 22 build. Feature-branch pushe
 
 The build retains localized titles/descriptions, canonical and hreflang links, Open Graph metadata, robots.txt and sitemap.xml. The root redirects to /kk. Downloads remain noindex.
 
-The 34.4 MiB film is not copied into the build output. Opening the optional story uses its existing external media CDN; availability remains an external dependency. Never change that provider or publish a duplicate video as a routine design edit.
+The 34.4 MiB film is not copied into the build output. The cinematic opening uses its existing external media CDN; availability remains an external dependency. Never change that provider or publish a duplicate video as a routine design edit.
 
 No new tracking service is activated. `commoditychain:public-event` CustomEvent hooks expose only named actions and an optional enumerated category, never enquiry contents.
 

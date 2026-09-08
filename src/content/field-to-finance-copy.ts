@@ -1,4 +1,5 @@
 import type { Locale } from '../i18n';
+import { publicSiteCopy } from './public-site-copy.ts';
 
 type Item = { title: string; body: string };
 type FieldCopy = {
@@ -17,7 +18,7 @@ export const fieldToFinanceCopy = {
     comparisonTitle: 'Two starting points. Different evidence.',
     comparison: [
       { title: 'Before harvest · Field-to-Finance', body: 'The grain does not yet exist. Verification starts with fields, land-use documents, production plans and independent seasonal observations.' },
-      { title: 'After harvest · Stored grain', body: 'The grain is already in storage. Verification starts with the warehouse receipt, the identified grain, storage records and its quantity and condition.' },
+      { title: 'After harvest · Stored grain', body: publicSiteCopy.en.storageSummary },
     ],
     journeyTitle: 'From a field to financing',
     journey: [
@@ -46,7 +47,7 @@ export const fieldToFinanceCopy = {
     comparisonTitle: 'Две отправные точки. Разные подтверждения.',
     comparison: [
       { title: 'До урожая · Field-to-Finance', body: 'Зерна ещё нет. Проверка начинается с полей, документов на пользование землёй, производственного плана и независимых наблюдений за сезоном.' },
-      { title: 'После урожая · Зерно на хранении', body: 'Зерно уже находится на хранении. Проверка начинается со складской расписки, идентификации зерна, записей о хранении, количестве и состоянии.' },
+      { title: 'После урожая · Зерно на хранении', body: publicSiteCopy.ru.storageSummary },
     ],
     journeyTitle: 'От поля к финансированию',
     journey: [
@@ -75,7 +76,7 @@ export const fieldToFinanceCopy = {
     comparisonTitle: 'Екі бастапқы нүкте. Әртүрлі дәлелдер.',
     comparison: [
       { title: 'Өнімге дейін · Field-to-Finance', body: 'Астық әлі жоқ. Тексеру алқаптардан, жерді пайдалану құжаттарынан, өндірістік жоспардан және маусым барысын тәуелсіз бақылаудан басталады.' },
-      { title: 'Өнімнен кейін · Сақтаудағы астық', body: 'Астық қоймада тұр. Тексеру қойма қолхатынан, астықты сәйкестендіруден, сақтау, мөлшері мен күйі туралы жазбалардан басталады.' },
+      { title: 'Өнімнен кейін · Сақтаудағы астық', body: publicSiteCopy.kk.storageSummary },
     ],
     journeyTitle: 'Егістіктен қаржыландыруға дейін',
     journey: [

@@ -1,0 +1,260 @@
+{
+  "results": [
+    {
+      "name": "narrow-ru",
+      "status": "pass",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 6568,
+      "credibilityTop": 7675.53125,
+      "assetsTop": 8192.390625,
+      "headingOverflow": []
+    },
+    {
+      "name": "narrow-kk",
+      "status": "pass",
+      "width": 320,
+      "height": 568,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 6568,
+      "credibilityTop": 7771.109375,
+      "assetsTop": 8264.578125,
+      "headingOverflow": []
+    },
+    {
+      "name": "mobile-en",
+      "status": "pass",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 6844,
+      "credibilityTop": 7781.484375,
+      "assetsTop": 8228.171875,
+      "headingOverflow": []
+    },
+    {
+      "name": "mobile-ru",
+      "status": "pass",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 6844,
+      "credibilityTop": 7872.109375,
+      "assetsTop": 8342.1875,
+      "headingOverflow": []
+    },
+    {
+      "name": "mobile-kk",
+      "status": "pass",
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 6844,
+      "credibilityTop": 7944.59375,
+      "assetsTop": 8414.671875,
+      "headingOverflow": []
+    },
+    {
+      "name": "tablet-en",
+      "status": "pass",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 9524,
+      "credibilityTop": 10229.4375,
+      "assetsTop": 10543.5625,
+      "headingOverflow": []
+    },
+    {
+      "name": "tablet-ru",
+      "status": "pass",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 9524,
+      "credibilityTop": 10326.03125,
+      "assetsTop": 10663.546875,
+      "headingOverflow": []
+    },
+    {
+      "name": "tablet-kk",
+      "status": "pass",
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 9524,
+      "credibilityTop": 10428.015625,
+      "assetsTop": 10765.53125,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop-en",
+      "status": "pass",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 9500,
+      "credibilityTop": 10260.71875,
+      "assetsTop": 10438.28125,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop-ru",
+      "status": "pass",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 9500,
+      "credibilityTop": 10260.71875,
+      "assetsTop": 10461.671875,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop-kk",
+      "status": "pass",
+      "width": 1440,
+      "height": 1000,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 9500,
+      "credibilityTop": 10347.875,
+      "assetsTop": 10533.4375,
+      "headingOverflow": []
+    },
+    {
+      "name": "landscape-en",
+      "status": "pass",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 8890,
+      "credibilityTop": 9469.046875,
+      "assetsTop": 9783.171875,
+      "headingOverflow": []
+    },
+    {
+      "name": "landscape-ru",
+      "status": "pass",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 8890,
+      "credibilityTop": 9662.03125,
+      "assetsTop": 9999.546875,
+      "headingOverflow": []
+    },
+    {
+      "name": "landscape-kk",
+      "status": "pass",
+      "width": 844,
+      "height": 390,
+      "overflow": false,
+      "videoCount": 1,
+      "heroTop": 8890,
+      "credibilityTop": 9740.921875,
+      "assetsTop": 10055.046875,
+      "headingOverflow": []
+    },
+    {
+      "name": "desktop evidence and governance screenshots",
+      "status": "pass"
+    },
+    {
+      "name": "audience context and validation",
+      "status": "pass"
+    },
+    {
+      "name": "cinematic opening, forward/backward seeking, locale continuity and reading links",
+      "status": "pass",
+      "forward": "5.0925",
+      "backward": "0.0000",
+      "media": {
+        "time": 0,
+        "readyState": 4,
+        "paused": true
+      }
+    },
+    {
+      "name": "logo, expanded reading and footer spacing on desktop and mobile",
+      "status": "pass",
+      "measurements": [
+        {
+          "label": "desktop",
+          "detail": {
+            "bottomPadding": "32px",
+            "paragraphGap": "24px"
+          },
+          "spacing": {
+            "sidePadding": "97.92px",
+            "sectionPadding": "64px",
+            "footerPadding": "40px",
+            "gap": 104
+          }
+        },
+        {
+          "label": "mobile",
+          "detail": {
+            "bottomPadding": "32px",
+            "paragraphGap": "24px"
+          },
+          "spacing": {
+            "sidePadding": "22px",
+            "sectionPadding": "48px",
+            "footerPadding": "32px",
+            "gap": 80
+          }
+        }
+      ]
+    },
+    {
+      "name": "failed media falls back to text and preserves business access",
+      "status": "pass"
+    },
+    {
+      "name": "reduced motion starts static and preserves the homepage",
+      "status": "pass"
+    },
+    {
+      "name": "mobile menu keyboard dismissal and short-landscape navigation",
+      "status": "pass"
+    },
+    {
+      "name": "no-JavaScript reading and native evidence disclosures",
+      "status": "pass"
+    },
+    {
+      "name": "mock online acceptance, duplicate prevention, provider failure and recovery",
+      "status": "pass",
+      "mockedRequests": 3
+    },
+    {
+      "name": "no unexpected browser errors",
+      "status": "pass",
+      "errors": 0
+    }
+  ],
+  "issues": [
+    {
+      "name": "narrow-en",
+      "error": "page.goto: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:4174/en\", waiting until \"networkidle\"\u001b[22m\n"
+    }
+  ],
+  "webkit": {
+    "available": false,
+    "tested": false
+  },
+  "physicalIPhone": false
+}

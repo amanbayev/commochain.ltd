@@ -1,5 +1,7 @@
 # Public-site clarity preview — review report
 
+Historical report for commit 48d56e4. The owner subsequently requested restoration of the film as the default opening, updated stored-grain verification, supplied a TechHub logo and requested footer-spacing corrections. The optional-film layout and associated first-screen metrics below are superseded; see [the current revision](film-return-review.md). Original evidence is retained, not presented as current behavior.
+
 ## Scope and preserved work
 
 Repository: amanbayev/commochain.ltd, public marketing website only.

@@ -29,7 +29,7 @@ export function OverviewDocument({ locale, origin }: { locale: Locale; origin: s
     <h3>{experienceCopy[locale].reading.definitionTitle}</h3><p>{experienceCopy[locale].reading.definitionBody}</p>
     <p>{p.shareholderShort}</p><p>{p.permissions}</p>
     <h2>{field.title}</h2><p>{field.body}</p><h3>{field.comparisonTitle}</h3><div className="grid">{field.comparison.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
-    <h2>{p.verification}</h2><p>{p.verificationIntro}</p><p>{p.methodology}</p><ol>{p.evidence.map(item=><li key={item.title}><h3>{item.title}</h3><p>{item.body}</p></li>)}</ol><h3>{p.storageTitle}</h3><p>{p.storageBody}</p><h3>{p.solanaTitle}</h3><p>{p.solanaBody}</p>
+    <h2>{p.verification}</h2><p>{p.verificationIntro}</p><p>{p.methodology}</p><ol>{p.evidence.map(item=><li key={item.title}><h3>{item.title}</h3><p>{item.body}</p></li>)}</ol><h3>{p.storageTitle}</h3><p>{p.storageBody}</p><p>{p.storageDocuments}</p><h3>{p.solanaTitle}</h3><p>{p.solanaBody}</p>
     <h2>{field.journeyTitle}</h2><ol>{field.journey.map(item => <li key={item.title}><h3>{item.title}</h3><p>{item.body}</p></li>)}</ol>
     <aside><h3>{field.rightsTitle}</h3><p>{field.rights}</p><p className="note">{field.risk}</p></aside>
     <h2>{field.rolesTitle}</h2><div className="grid">{field.roles.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.body}</p></article>)}</div>
