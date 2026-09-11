@@ -1,3 +1,4 @@
+import { locales } from '../i18n.ts';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
@@ -12,7 +13,7 @@ test('microinteractions are progressive, bounded and leave all default content v
   assert.match(css, /\.engine-diagram\[data-motion-entered=true\]/);
   assert.ok(!/infinite|opacity:\s*0\s*[;}]/.test(css));
   assert.ok(!/transition:\s*all|animation-fill-mode:\s*(both|forwards)/.test(css));
-  for (const locale of ['en', 'ru', 'kk']) {
+  for (const locale of locales) {
     const html = readFileSync(new URL(`../../dist/${locale}.html`, import.meta.url), 'utf8');
     assert.match(html, /class="engine-diagram" aria-describedby="engine-model-note"/);
     assert.ok(!html.includes('data-motion-entered'));

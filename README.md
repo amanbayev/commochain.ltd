@@ -1,6 +1,6 @@
 # CommodityChain public website
 
-React 19, TypeScript, Vite 7 and Node.js 22; statically generated Kazakh, Russian and English pages on the existing Vercel project. This is the marketing website, not the separate trading application.
+React 19, TypeScript, Vite 7 and Node.js 22; statically generated Kazakh, Russian, English and Simplified Chinese pages on the existing Vercel project. This is the marketing website, not the separate trading application.
 
 ## Current review: cinematic opening, verification and finishing details
 
@@ -8,7 +8,7 @@ At the owner's request, the original eleven-chapter scroll film opens the page a
 
 One video mounts after hydration in cinematic mode, using the unchanged source, timing and scroll controller. There is no separate story modal or duplicate player. Reduced-motion, failed-media and no-JavaScript paths remain readable. The supplied TechHub logo now has a transparent background, and the lower disclosures/footer regain their shared gutters and content spacing.
 
-The owner clarified that stored-grain verification uses smart sensors and measurement systems: cameras, scales, laboratory testing and robots inside silos for quantity/quality measurements. This information is shared across all three languages and printable overviews, alongside separate warehouse-document and custody evidence. See [this revision's screenshots and checks](docs/film-return-review.md); the earlier optional-film layout is superseded.
+The owner clarified that stored-grain verification uses smart sensors and measurement systems: cameras, scales, laboratory testing and robots inside silos for quantity/quality measurements. This information is shared across all four languages and printable overviews, alongside separate warehouse-document and custody evidence. See [this revision's screenshots and checks](docs/film-return-review.md); the earlier optional-film layout is superseded.
 
 Current facts and qualifications come from the supplied licence certificate and the owner's implementation brief. See [claim sources and unresolved reviews](docs/public-claims.md). The supplied certificate and private supporting documents are not published.
 
@@ -29,7 +29,7 @@ npm run test:built
 npm run preview
 ```
 
-Open http://127.0.0.1:4173/en (also /ru and /kk). The local static preview intentionally reports the enquiry endpoint unavailable; it never sends email. For frontend development use `npm run dev`.
+Open http://127.0.0.1:4173/en (also /ru, /kk and /zh). The local static preview intentionally reports the enquiry endpoint unavailable; it never sends email. For frontend development use `npm run dev`.
 
 Tests live beside their code. There is no lint script. Parent AGENTS.md also requires pnpm lint/typecheck/test/build; use the installed pnpm runtime to attempt these scripts, without installing dependencies through pnpm or replacing package-lock.json.
 
@@ -39,16 +39,18 @@ The optional browser review harness uses an externally installed Playwright pack
 
 - Company facts, homepage and verification: `src/content/public-site-copy.ts`
 - Supporting business and protocol content: `src/content/overview-copy.ts`, `field-to-finance-copy.ts`, `experience-copy.ts`
-- Film captions and sharing metadata: `src/content/commochain-copy.kk-ru-en.json`
+- Film captions and sharing metadata: `src/content/commochain-copy.kk-ru-en.json` (legacy filename; includes `zh` Simplified Chinese)
 - Enquiry language: `src/content/enquiry-copy.ts`
 - Reading layout and optional story: `src/components/business-overview.tsx`, `story-page.tsx`
 - Brand foundation: `src/story.css`, `overview.css`, `motion.css`; current surface: `src/public-site.css`
 - Enquiry contract FIRST: `packages/contracts/openapi.yaml`; domain service: `packages/enquiries`; external interfaces: `packages/adapters`; Vercel entry: `api/enquiry.ts`
 - Media source and exact timing: `src/content/story-media.json`, `story-timing.json`
 
-The build generates self-contained, script-free /downloads/commoditychain-overview-{en,ru,kk}.html for offline reading or printing from the same localized content. These are not republished source PDFs.
+The build generates self-contained, script-free /downloads/commoditychain-overview-{en,ru,kk,zh}.html for offline reading or printing from the same localized content. These are not republished source PDFs.
 
 The original poster, provisional Concept B logo, favicon and self-hosted Noto fonts are retained. The existing local agricultural illustrations are clearly labelled, not presented as satellite evidence or financed company assets. Provenance remains in [editorial assets](docs/editorial-assets.md).
+
+Simplified Chinese uses `/zh` and the `简体中文` language selector. Noto Sans SC (400/600) and Noto Serif SC (400) subsets are self-hosted with their SIL Open Font License files. The Chinese printable overview embeds these subsets, so it also works offline without installed Chinese fonts. After adding Chinese characters to the copy, regenerate the subsets with `scripts/build-chinese-fonts.py`; its docstring lists the upstream source and requirements. This maintenance step is not part of the Node/Vercel build.
 
 ## Deployment and discovery controls
 

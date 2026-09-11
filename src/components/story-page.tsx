@@ -21,6 +21,7 @@ const enableMotion: Record<Locale, string> = {
   kk: 'Анимацияны қосу',
   ru: 'Включить анимацию',
   en: 'Enable animation',
+  zh: '启用动画',
 };
 const clamp = (value:number) => Math.max(0, Math.min(1, value));
 const chapterAt = (time:number) => Math.max(0, chapters.findIndex((c,i) => time >= c.start && (time < c.end || i === chapters.length-1)));

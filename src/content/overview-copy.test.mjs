@@ -1,5 +1,7 @@
+import { locales } from '../i18n.ts';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { readFileSync } from 'node:fs';
 import { overviewCopy } from './overview-copy.ts';
 import { fieldToFinanceCopy } from './field-to-finance-copy.ts';
 import { experienceCopy } from './experience-copy.ts';
@@ -11,15 +13,17 @@ function shape(value) {
   assert.ok(value.trim().length > 0);
   return 'text';
 }
-test('all three languages cover the same complete content and navigation', () => {
-  for (const copy of [overviewCopy, fieldToFinanceCopy, experienceCopy]) {
-    assert.deepEqual(Object.keys(copy).sort(), ['en', 'kk', 'ru']);
-    for (const locale of ['kk', 'ru']) assert.deepEqual(shape(copy[locale]), shape(copy.en));
+test('all supported languages cover the same complete content and navigation', () => {
+  const story = JSON.parse(readFileSync(new URL('./commochain-copy.kk-ru-en.json', import.meta.url), 'utf8'));
+  assert.deepEqual(story.shared.localeOrder, [...locales]);
+  for (const copy of [overviewCopy, fieldToFinanceCopy, experienceCopy, story.locales]) {
+    assert.deepEqual(Object.keys(copy).sort(), [...locales].sort());
+    for (const locale of locales) assert.deepEqual(shape(copy[locale]), shape(copy.en));
   }
 });
 
 test('experience explanations match existing audience, engine and lifecycle content', () => {
-  for (const locale of ['en', 'ru', 'kk']) {
+  for (const locale of locales) {
     const copy = experienceCopy[locale];
     assert.equal(copy.audience.items.length, overviewCopy[locale].overview.audiences.length);
     assert.equal(copy.architecture.protocols.length, 4);
@@ -32,13 +36,13 @@ test('experience explanations match existing audience, engine and lifecycle cont
   }
 });
 test('launch protocols retain independent evidence, legal rights and risk explanations', () => {
-  for (const locale of ['en', 'kk', 'ru']) {
+  for (const locale of locales) {
     const copy = fieldToFinanceCopy[locale];
     assert.equal(copy.comparison.length, 2);
     assert.equal(copy.journey.length, 4);
     assert.equal(copy.roles.length, 6);
     assert.ok(copy.roles[0].title.includes('SCAS'));
-    assert.ok(copy.rights.length > 100 && copy.risk.length > 100);
+    assert.ok(Buffer.byteLength(copy.rights) > 100 && Buffer.byteLength(copy.risk) > 100);
     assert.equal(overviewCopy[locale].grain.structures.length, 3);
   }
 });

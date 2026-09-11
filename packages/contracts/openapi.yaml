@@ -59,7 +59,7 @@ components:
         organisation: {type: string, maxLength: 160}
         role: {enum: [farmer, investor, warehouse, other]}
         message: {type: string, minLength: 10, maxLength: 1500}
-        locale: {enum: [kk, ru, en]}
+        locale: {enum: [kk, ru, en, zh]}
         consent: {const: true}
         website: {type: string, maxLength: 0, description: Honeypot must remain empty}
         eventId: {type: string, format: uuid}

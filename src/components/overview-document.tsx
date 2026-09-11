@@ -5,7 +5,7 @@ import { storyCopy, storyShared } from '../story-i18n';
 import { experienceCopy } from '../content/experience-copy';
 import { publicSiteCopy, companyFacts } from '../content/public-site-copy';
 
-// A self-contained reading/printing download. No scripts, external fonts or images.
+// A self-contained reading/printing download. Chinese font subsets are embedded at build time.
 const documentStyle = `
   *{box-sizing:border-box}body{margin:0;background:#f0eee6;color:#18221e;font:16px/1.8 system-ui,sans-serif}
   main{max-width:980px;margin:auto;padding:48px 36px}header{border-bottom:2px solid #8b7740;padding-bottom:26px}
@@ -14,16 +14,18 @@ const documentStyle = `
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px}.grid article{border-top:1px solid #b5bdad}
   aside{border-top:1px solid #8b7740;background:#e6e4d8;padding:18px 24px;margin:24px 0}
   li{padding:0 0 14px 8px}li h3{margin-bottom:4px}.note,footer{font-size:14px}footer{border-top:1px solid #b5bdad;margin-top:32px;padding-top:22px}
+  html[lang=zh] body{font-family:'CC Sans',system-ui,'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;line-break:strict}
+  html[lang=zh] :is(h1,h2){font-family:'CC Serif','Songti SC','SimSun','Noto Serif CJK SC',serif;line-height:1.4}
   @media(max-width:600px){main{padding:28px 22px}.grid{grid-template-columns:1fr}h1{font-size:32px}h2{font-size:26px}}
   @media print{@page{margin:18mm}body{background:white;font-size:11pt;line-height:1.6}main{max-width:none;padding:0}h1{font-size:26pt}h2{font-size:20pt;break-after:avoid}h3{font-size:13pt;break-after:avoid}article,aside,li{break-inside:avoid}a{color:inherit}.note,footer{font-size:10pt}}
 `;
 
-export function OverviewDocument({ locale, origin }: { locale: Locale; origin: string }) {
+export function OverviewDocument({ locale, origin, fontCss = '' }: { locale: Locale; origin: string; fontCss?: string }) {
   const copy = overviewCopy[locale];
   const field = fieldToFinanceCopy[locale];
   const t = storyCopy[locale];
   const p = publicSiteCopy[locale];
-  return <html lang={locale}><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex, nofollow"/><title>{`${storyShared.brand} | ${copy.nav.overview}`}</title><style>{documentStyle}</style></head><body><main>
+  return <html lang={locale}><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex, nofollow"/><title>{`${storyShared.brand} | ${copy.nav.overview}`}</title><style>{fontCss + documentStyle}</style></head><body><main>
     <header><a href={`${origin}/${locale}`}>{storyShared.brand}</a><h1>{p.hero}</h1><p>{p.intro}</p></header>
     <aside><h3>{copy.overview.status}</h3><p>{copy.overview.statusBody}</p></aside>
     <h3>{experienceCopy[locale].reading.definitionTitle}</h3><p>{experienceCopy[locale].reading.definitionBody}</p>

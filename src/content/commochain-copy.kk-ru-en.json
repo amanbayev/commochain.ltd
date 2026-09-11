@@ -45,7 +45,8 @@
     "localeOrder": [
       "kk",
       "ru",
-      "en"
+      "en",
+      "zh"
     ],
     "fontSpecimen": "Ә ә Ғ ғ Қ қ Ң ң Ө ө Ұ ұ Ү ү Һ һ І і"
   },
@@ -357,6 +358,109 @@
         "eligibility": "Participation is subject to eligibility, jurisdiction and the terms of each instrument.",
         "concepts": "Asset categories shown for exploration are not a list of currently available products.",
         "terrainNote": "The field tile illustrates the origin of the commodity, not ownership of the land."
+      }
+    },
+    "zh": {
+      "languageName": "简体中文",
+      "htmlLang": "zh",
+      "metadata": {
+        "title": "CommodityChain | 连接实体资产与资本",
+        "description": "持有 AFSA 许可的市场基础设施，面向农业融资、仓储粮食及资产核验。目前处于受控启动阶段。"
+      },
+      "navigation": {
+        "story": "故事",
+        "infrastructure": "基础设施",
+        "assets": "资产",
+        "contact": "联系"
+      },
+      "ui": {
+        "language": "语言",
+        "menu": "菜单",
+        "closeMenu": "关闭菜单",
+        "scroll": "滚动探索",
+        "scrollExplanation": "向下滚动继续，向上滚动回顾。",
+        "skipStory": "跳转至联系",
+        "staticView": "静态模式",
+        "cinematicView": "影片模式",
+        "loading": "正在加载故事…",
+        "mediaError": "影片无法加载，请阅读下方文字。",
+        "readStory": "阅读故事",
+        "previous": "上一章",
+        "next": "下一章",
+        "backToTop": "返回顶部",
+        "emailCta": "洽谈合作",
+        "emailLinkLabel": "发送邮件至 CommodityChain",
+        "copyEmail": "复制邮箱地址",
+        "emailCopied": "邮箱地址已复制",
+        "copyFailed": "请选中并复制邮箱地址。",
+        "concept": "概念",
+        "externalLink": "在新标签页中打开",
+        "chapter": "章节"
+      },
+      "scenes": {
+        "field": {
+          "headline": "从田间到融资。",
+          "body": "探索实物商品如何连接数字工具，以及围绕工具形成的市场。"
+        },
+        "rights": {
+          "headline": "实体资产，明确权利。",
+          "body": "数字化表示只是工具的一部分，其权利与义务由相关文件界定。"
+        },
+        "investor": {
+          "headline": "与实体经济相连接。",
+          "body": "作出决定前，请了解资产、审阅条款并理解参与要求。"
+        },
+        "market": {
+          "headline": "从工具到市场。",
+          "body": "发行、订单、成交及结算是不同阶段。本故事展示它们如何相互衔接。"
+        },
+        "compliance": {
+          "headline": "规则、核查与责任。",
+          "body": "受监管的环境依赖明确的许可范围、参与者核查及持续监督。"
+        },
+        "solana": {
+          "headline": "Solana：业务背后的记录。",
+          "body": "了解工具与交易记录之间的连接。资产证据和合同文件仍各有作用。"
+        },
+        "asset_universe": {
+          "headline": "始于粮食，探索更多。",
+          "body": "探索涵盖实物商品、创意权利及数字资产的代币化概念。"
+        },
+        "music": {
+          "headline": "音乐权利。",
+          "body": "探索如何以数字形式表达明确界定的音乐权利或版税权益。"
+        },
+        "game": {
+          "headline": "数字游戏资产。",
+          "body": "探索游戏生态中的数字物品及其所附带的具体权利。"
+        },
+        "grain": {
+          "headline": "粮食相关工具。",
+          "body": "仓储粮食与未来收成对应不同的结构。相关资产与条款以工具文件为准。"
+        },
+        "water": {
+          "headline": "水井项目。",
+          "body": "探索与特定项目相关的合同权益，并非主张地下水所有权。"
+        },
+        "closing": {
+          "headline": "让资本连接价值之源。",
+          "body": "欢迎洽谈您项目背后的资产、权利及基础设施。"
+        }
+      },
+      "contact": {
+        "title": "洽谈您的项目。",
+        "body": "如需洽谈合作或资产代币化，欢迎通过邮件联系我们。",
+        "subject": "CommodityChain — 合作咨询"
+      },
+      "footer": {
+        "company": "公司信息",
+        "bin": "企业识别号（BIN）",
+        "register": "查看 AFSA 公开登记册",
+        "licence": "许可证记录",
+        "illustration": "影片为概念演示，并非实时交易界面。",
+        "eligibility": "参与须符合资格、司法管辖区及各工具条款的要求。",
+        "concepts": "所展示的探索性资产类别并非当前可用产品清单。",
+        "terrainNote": "地块画面用于说明商品来源，并不代表土地所有权。"
       }
     }
   }

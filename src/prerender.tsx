@@ -7,6 +7,6 @@ export function renderLocale(locale: Locale) {
   return renderToString(<StoryPage initialLocale={locale} />);
 }
 
-export function renderOverviewDocument(locale: Locale, origin: string) {
-  return '<!doctype html>' + renderToStaticMarkup(<OverviewDocument locale={locale} origin={origin}/>);
+export function renderOverviewDocument(locale: Locale, origin: string, fontCss = '') {
+  return '<!doctype html>' + renderToStaticMarkup(<OverviewDocument locale={locale} origin={origin} fontCss={fontCss}/>);
 }

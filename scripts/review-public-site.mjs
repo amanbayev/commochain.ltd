@@ -30,7 +30,7 @@ try {
     await browser.close();process.exit(0);
   }
   consoleErrors.length=0;
-  for(const [label,width,height] of [['narrow',320,568],['mobile',390,844],['tablet',768,1024],['desktop',1440,1000],['landscape',844,390]])for(const locale of ['en','ru','kk'])await check(`${label}-${locale}`,async()=>{
+  for(const [label,width,height] of [['narrow',320,568],['mobile',390,844],['tablet',768,1024],['desktop',1440,1000],['landscape',844,390]])for(const locale of ['en','ru','kk','zh'])await check(`${label}-${locale}`,async()=>{
     await page.setViewportSize({width,height});await page.goto(`${base}/${locale}`,{waitUntil:'domcontentloaded'});await page.locator('#enquiry-name:enabled').waitFor();await page.evaluate(()=>document.fonts.ready);const value=await metrics();assert(!value.overflow,'Horizontal overflow');assert(!value.headingOverflow.length,'Heading overflow: '+value.headingOverflow.join('; '));assert(value.videoCount===1,'Default homepage must mount exactly one film');assert(value.heroTop>height,'Film no longer precedes the business overview');
     if(locale==='ru'&&['mobile','desktop'].includes(label))await page.screenshot({animations:'disabled',path:resolve(output,`after-${label}.png`)});return value;
   });

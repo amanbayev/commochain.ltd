@@ -1,3 +1,4 @@
+import { locales } from '../i18n.ts';
 import assert from 'node:assert/strict';
 import { readFileSync, statSync } from 'node:fs';
 import { test } from 'node:test';
@@ -6,7 +7,7 @@ import { experienceCopy } from '../content/experience-copy.ts';
 const built = path => new URL(`../../dist/${path}`, import.meta.url);
 const escape = text => text.replaceAll('&', '&amp;').replaceAll("'", '&#x27;');
 
-for (const locale of ['en', 'ru', 'kk']) {
+for (const locale of locales) {
   test(`${locale}: role tabs have unique relationships, reachable content and no-JS fallback`, () => {
     const html = readFileSync(built(`${locale}.html`), 'utf8');
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
