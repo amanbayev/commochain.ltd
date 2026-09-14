@@ -111,3 +111,12 @@
   .public-site .techhub-logo { max-width:260px; }
 }
 @media(max-height:500px) and (orientation:landscape) { .public-hero { padding-top:110px; } }
+
+/* Keep four language choices on one line, including on narrow phones. */
+.story-languages a { white-space:nowrap; }
+@media(max-width:767px) { .story-languages { gap:clamp(10px,3vw,22px); } }
+
+/* Chinese characters need natural spacing and room for full-width punctuation. */
+.public-site[data-locale='zh'] { font-family:'CC Sans','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif; line-break:strict; }
+.public-site[data-locale='zh'] :is(h1,h2,h3,h4) { letter-spacing:normal; text-wrap:balance; }
+.public-site[data-locale='zh'] :is(.story-caption h1,.story-caption h2,.hero-message h2,.section-heading h2,.story-contact>h2) { font-family:'CC Serif','Songti SC','SimSun','Noto Serif CJK SC',serif; line-height:1.3; }

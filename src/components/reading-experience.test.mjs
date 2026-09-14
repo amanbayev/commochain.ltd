@@ -1,3 +1,4 @@
+import { locales } from '../i18n.ts';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
@@ -9,7 +10,7 @@ import { publicSiteCopy } from '../content/public-site-copy.ts';
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 const escape = text => text.replaceAll('&', '&amp;').replaceAll("'", '&#x27;');
 
-for (const locale of ['en', 'ru', 'kk']) {
+for (const locale of locales) {
   test(`${locale}: a shorter reading path preserves supporting evidence and visible qualifications`, () => {
     const html = read(`../../dist/${locale}.html`);
     const experience = experienceCopy[locale];

@@ -1,3 +1,4 @@
+import { locales } from '../i18n.ts';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
@@ -6,7 +7,7 @@ import { overviewCopy } from '../content/overview-copy.ts';
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 const escape = text => text.replaceAll('&', '&amp;').replaceAll("'", '&#x27;');
 
-for (const locale of ['en', 'ru', 'kk']) {
+for (const locale of locales) {
   test(`${locale}: innovation partnership and regulatory record are distinct`, () => {
     const html = read(`../../dist/${locale}.html`);
     const partnership = html.match(/<article class="innovation-partnership"[\s\S]*?<\/article>/)?.[0];

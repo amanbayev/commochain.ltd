@@ -22,7 +22,7 @@ function changeLocale(locale: Locale) {
     'og:title': storyCopy[locale].metadata.title,
     'og:description': storyCopy[locale].metadata.description,
     'og:url': `${origin}/${locale}`,
-    'og:locale': { kk: 'kk_KZ', ru: 'ru_RU', en: 'en_US' }[locale],
+    'og:locale': { kk: 'kk_KZ', ru: 'ru_RU', en: 'en_US', zh: 'zh_CN' }[locale],
   };
   for (const [property, content] of Object.entries(values)) {
     document.querySelector<HTMLMetaElement>(`meta[property="${property}"]`)?.setAttribute('content', content);

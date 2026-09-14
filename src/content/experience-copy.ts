@@ -41,6 +41,36 @@ export const experienceCopy = {
     },
     jump: 'Jump to a section',
   },
+  zh: {
+    reading: {
+      definitionTitle: '这里的代币化意味着什么？',
+      definitionBody: '数字工具将资产证据与文件载明的权利连接起来。工具条款决定持有人可以主张何种权利；代币并不自动赋予土地或粮食所有权。',
+      instrumentChecklist: '了解一项工具的四个问题', comparisonDetails: '比较核验依据与融资目的',
+      journeyDetails: '各阶段的参与方与记录内容', grainDetails: '仓储粮食：证据、权利与责任',
+    },
+    illustration: 'AI 生成的插图', fieldCaption: '生长季概念图，并非具体获得融资的地块。', grainCaption: '粮食仓储概念图，并非 CommodityChain 的设施。',
+    architecture: {
+      note: '平台模型 · 并非实时业务',
+      protocols: ['核验资产', '界定权利', '发行与铸造', '赎回与销毁'],
+      market: ['提交订单', '撮合与成交', '清算义务', '交易结算'],
+      connection: '工具规则 ↔ 市场记录', foundation: '全生命周期中的明确分工',
+      roles: ['独立核验', '参与者资格', '权利登记'],
+    },
+    audience: { label: '选择您的起点', prepare: '首次洽谈前可准备', items: [
+      { label: '农户 / 资产所有者', checklist: ['资产类型与所在地', '种植季计划或仓储粮食情况', '希望探讨的融资问题'], cta: '洽谈融资需求' },
+      { label: '粮仓 / 贸易合作伙伴', checklist: ['您在仓储或贸易中的角色', '现有记录与核验流程', '希望探讨的合作方式'], cta: '洽谈合作' },
+      { label: '投资者 / 金融合作伙伴', checklist: ['您的机构与角色', '您感兴趣的拟议工具', '关于证据、权利和准入的问题'], cta: '洽谈参与要求' },
+    ] },
+    comparison: { labels: ['起点', '核验依据', '融资目的'], values: [
+      ['未来农业合同池', '地块文件、生产计划和独立的季节性观测', '探索下一种植季的融资'],
+      ['已识别的仓储粮食', '仓单、仓储记录及粮食数量和状况', '探索仓储粮食融资及市场准入'],
+    ] },
+    journey: { who: '参与方', evidence: '形成的依据',
+      actors: ['农户与独立核验方', '发行人', '合格投资者、交易所、清算所及登记机构', '农户、独立核验方与发行人'],
+      outputs: ['经独立检查的地块文件及生产计划。', '载明权利、义务和风险的工具文件。', '达成的交易、结算及权利登记。', '季节性证据及按工具条款完成的履约。'],
+    },
+    jump: '跳转至章节',
+  },
   ru: {
     reading: {
       definitionTitle: 'Что здесь означает токенизация?',

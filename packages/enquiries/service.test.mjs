@@ -9,6 +9,16 @@ const request=(body,options={})=>new Request('https://preview.example/api/enquir
 function fixture(){let calls=0;const records=new Map();const deps={origins:['https://preview.example'],secret:'test-only-secret-with-at-least-32-characters',delivery:{async accept(){calls++;}},guard:{async checkRate(){return true;},async acquire(id,digest){const prev=records.get(id);if(prev)return prev.digest!==digest?'conflict':prev.status;records.set(id,{digest,status:'pending'});return 'new';},async accepted(id,digest){records.set(id,{digest,status:'accepted'});}}};return{deps,get calls(){return calls;}};}
 test('missing provider configuration fails closed without claiming success',async()=>{assert.equal(configuredEnquiry({}),null);assert.equal(configuredEnquiry({ENQUIRY_ENABLED:'true'}),null);assert.deepEqual(await(await handleEnquiry(new Request('https://preview.example/api/enquiry'),null)).json(),{available:false});assert.equal((await handleEnquiry(request(payload()),null)).status,503);});
 test('acceptance is separate from delivery and repeated events have no additional effect',async()=>{const f=fixture(),v=payload();const first=await handleEnquiry(request(v),f.deps);assert.equal(first.status,202);assert.deepEqual(await first.json(),{status:'accepted',eventId:v.eventId});assert.equal((await handleEnquiry(request(v),f.deps)).status,202);assert.equal(f.calls,1);});
+test('Chinese enquiries reach the delivery adapter with their language and Unicode content intact', async () => {
+  const f = fixture(), v = { ...payload(), locale: 'zh', name: '测试用户', organisation: '测试机构', message: '仅用于本地测试的粮食融资咨询，请勿发送。' };
+  let accepted;
+  f.deps.delivery.accept = async value => { accepted = value; };
+  assert.equal((await handleEnquiry(request(v), f.deps)).status, 202);
+  assert.equal(accepted.locale, 'zh');
+  assert.equal(accepted.name, v.name);
+  assert.equal(accepted.organisation, v.organisation);
+  assert.equal(accepted.message, v.message);
+});
 test('reused event identity with changed content or nonce is rejected',async()=>{const f=fixture(),v=payload();await handleEnquiry(request(v),f.deps);for(const changed of [{...v,message:'Changed content cannot reuse the identity.'},{...v,nonce:randomUUID()}])assert.equal((await handleEnquiry(request(changed),f.deps)).status,409);assert.equal(f.calls,1);});
 test('provider failure never returns acceptance and concurrent retry cannot double-send',async()=>{const f=fixture(),v=payload();f.deps.delivery.accept=async()=>{throw Error('private provider detail');};assert.equal((await handleEnquiry(request(v),f.deps)).status,502);const retry=await handleEnquiry(request(v),f.deps);assert.equal(retry.status,409);assert.ok(!(await retry.text()).includes('private'));});
 test('a request pending at the provider cannot be submitted concurrently',async()=>{const f=fixture(),v=payload();let done;f.deps.delivery.accept=()=>new Promise(resolve=>{done=resolve;});const first=handleEnquiry(request(v),f.deps);await new Promise(resolve=>setImmediate(resolve));assert.equal((await handleEnquiry(request(v),f.deps)).status,409);done();assert.equal((await first).status,202);});

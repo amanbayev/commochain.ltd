@@ -15,7 +15,7 @@ const server = createServer(async (request, response) => {
       response.end(JSON.stringify(request.method === 'GET' ? {available:false} : {error:'not_configured'})); return;
     }
     if (pathname === '/') { response.writeHead(307, { Location:'/kk' }); response.end(); return; }
-    if (['/kk/','/ru/','/en/'].includes(pathname)) { response.writeHead(308, { Location:pathname.slice(0,-1) }); response.end(); return; }
+    if (['/kk/','/ru/','/en/','/zh/'].includes(pathname)) { response.writeHead(308, { Location:pathname.slice(0,-1) }); response.end(); return; }
     let filename = resolve(root, '.' + pathname);
     if (!filename.startsWith(root + sep)) { response.writeHead(403); response.end(); return; }
     if (!extname(filename)) filename += '.html';
